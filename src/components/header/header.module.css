@@ -1,0 +1,40 @@
+.header {
+    background: linear-gradient(15deg, #0af, #000);
+    background: #000;
+    border-bottom: 5px solid #0af;
+}
+
+.projectName {
+    color: #0af;
+    padding: 5px;
+    width: 100%;
+    font-size: 3rem;
+    text-align: center;
+  }
+  
+  .projectName div {
+    font-family: serif;
+  }
+  
+  .navLayout {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 10px;
+  }
+  
+  .navLayout a:link,
+  .navLayout a:active,
+  .navLayout a:visited {
+    margin: 10px 2px;
+    color: white;
+    text-decoration: none;
+    background: #000;
+    padding: 10px 20px;
+    border: 2px solid #0cf;
+    border-radius: 10px;
+  }
+
+  .navLayout a:hover {
+    background: #0af;
+
+  }

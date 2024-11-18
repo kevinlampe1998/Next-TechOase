@@ -1,0 +1,28 @@
+.teamProject {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.teamProject ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.teamMember {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.teamMemberImage {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-right: 20px;
+    object-fit: cover;
+}
+
+.teamMember div {
+    font-size: 18px;
+}

@@ -1,34 +1,33 @@
-"use client";
+import { connectToDatabase } from "../../lib/mongodb";
 
-import { useEffect, useState, useContext } from "react";
-import { TheContext } from "@/components/context-provider";
-import { useRouter } from "next/navigation";
+export default async function handler(req, res) {
+    const { db } = await connectToDatabase();
+    const collection = db.collection("products");
 
-const Admin = () => {
-    const router = useRouter();
-    const [products, newproducts] = useState();
-    const { localDataBank, dispatch } = useContext(TheContext);
-
-    const getProducts = async () => {
-        const res = await fetch("/api/products");
-        const data = await res.json();
-        console.log("getProducts data", data);
-
-        // const idChanged = data.products.map(product =>
-        //     ({ ...product, id: product._id }));
-
-        setProducts(data.products);
-    };
-
-    useEffect(() => {
-        getProducts();
-    }, []);
-
-    return (
-        <section className={styles.admin}>
-            <h1>Admin</h1>
-        </section>
-    );
-};
-
-export default Admin;
+    switch (req.method) {
+        case "GET":
+            const products = await collection.find({}).toArray();
+            res.status(200).json(products);
+            break;
+        case "POST":
+            const newProduct = req.body;
+            await collection.insertOne(newProduct);
+            res.status(201).json({ message: "Product added successfully" });
+            break;
+        case "PUT":
+            const { _id, ...updateData } = req.body;
+            await collection.updateOne(
+                { _id: new ObjectId(_id) },
+                { $set: updateData }
+            );
+            res.status(200).json({ message: "Product updated successfully" });
+            break;
+        case "DELETE":
+            const { id } = req.body;
+            await collection.deleteOne({ _id: new ObjectId(id) });
+            res.status(200).json({ message: "Product deleted successfully" });
+            break;
+        default:
+            res.status(405).json({ message: "Method not allowed" });
+    }
+}

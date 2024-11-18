@@ -78,7 +78,7 @@ h1 {
 /* Left */
 .split.left {
     left: 0;
-    background: url("./assets/techoase2.jpeg");
+    background: url("./assets/techoase3.jpeg");
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -93,7 +93,7 @@ h1 {
 /* Right */
 .split.right {
     right: 0;
-    background: url("./assets/Designerblue.png");
+    background: url("./assets/Designerc.jpeg");
     background-repeat: no-repeat;
     background-size: cover;
 }

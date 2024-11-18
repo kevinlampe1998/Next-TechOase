@@ -2,16 +2,16 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { NextResponse } from "next/server.js";
 import connectMongo from "@/lib/connectMongo";
-import { serialize } from 'cookie';
+import { serialize } from "cookie";
 
 import User from "@/models/User.js";
 import Admin from "@/models/Admin.js";
 
 export const POST = async (req, res) => {
     try {
-        console.log('login route is requested');
+        console.log("login route is requested");
 
-        connectMongo();
+        await connectMongo();
 
         const body = await req.json();
 
@@ -23,17 +23,18 @@ export const POST = async (req, res) => {
         }
 
         const admin = await Admin.findOne({ email });
-        if (admin) {
-            password === admin.password && console.log('Admin');
-            password === admin.password && res.json({ message: 'Admin logged in!', admin });
-            if (password === admin.password) return;
-
+        if (admin && password === admin.password) {
+            // Admin erfolgreich eingeloggt
+            return NextResponse.json({
+                message: "Admin logged in!",
+                isAdmin: true,
+            });
         }
 
         const searchedUser = await User.findOne({ email });
 
         if (!searchedUser) {
-            return NextResponse.json({ message: "User not found!" });
+            return NextResponse.json({ message: "User not found!", error: 1 });
         }
 
         const comparePassword = await bcrypt.compare(
@@ -53,21 +54,30 @@ export const POST = async (req, res) => {
 
         searchedUser.hash = undefined;
 
-        const cookie = serialize('token', token, {
+        const cookie = serialize("token", token, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
+            secure: process.env.NODE_ENV === "production",
             maxAge: 60 * 60 * 12,
-            path: '/',
-            sameSite: 'Strict',
+            path: "/",
+            sameSite: "Strict",
         });
 
-        const response = new NextResponse(JSON.stringify({ message: 'You are successfully logged in!', success: 1, searchedUser }));
-        response.headers.set('Set-Cookie', cookie);
+        const response = new NextResponse(
+            JSON.stringify({
+                message: "You are successfully logged in!",
+                success: 1,
+                searchedUser,
+                isAdmin: false,
+            })
+        );
+        response.headers.set("Set-Cookie", cookie);
 
         return response;
-
     } catch (err) {
         console.log("Error on POST /users/login", err);
-        return NextResponse.json({ message: "Something went wrong!", error: 1 });
+        return NextResponse.json({
+            message: "Something went wrong!",
+            error: 1,
+        });
     }
 };

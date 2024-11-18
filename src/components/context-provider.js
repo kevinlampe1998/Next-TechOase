@@ -34,7 +34,6 @@ const ContextProvider = ({ children }) => {
         });
     
         const data = await res.json();
-        console.log(data);
     
         dispatch({ type: 'users-login', payload: data.searchedUser });
   
@@ -46,10 +45,6 @@ const ContextProvider = ({ children }) => {
     useEffect(() => {
       loginAtStart();
     }, []);
-
-    useEffect(() => {
-      console.log('localDataBank.user', localDataBank.user);
-    });
 
     return (
         <TheContext.Provider value={{ localDataBank, dispatch }}>

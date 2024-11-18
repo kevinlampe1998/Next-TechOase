@@ -17,11 +17,11 @@ const Footer = () => {
                 {
                     localDataBank.user &&
                         <>
-                            <Link href="/contact" onClick={scrollToTop}>Contact</Link>
-                            <Link href="/rating" onClick={scrollToTop}>Rating</Link>
-                            <Link href="/help-chat" onClick={scrollToTop}>Help-Chat</Link>
-                            <Link href="/team" onClick={scrollToTop}>Team</Link>
-                            <Link href="/faq" onClick={scrollToTop}>FAQ</Link>
+                            <Link href="/pages/contact" onClick={scrollToTop}>Contact</Link>
+                            <Link href="/pages/rating" onClick={scrollToTop}>Rating</Link>
+                            <Link href="/pages/help-chat" onClick={scrollToTop}>Help-Chat</Link>
+                            <Link href="/pages/team" onClick={scrollToTop}>Team</Link>
+                            <Link href="/pages/faq" onClick={scrollToTop}>FAQ</Link>
                         </>
                 }
         </footer>   

@@ -20,4 +20,27 @@ form {
 input {
     width: 80%;
     max-width: 600px;
+    padding: 5px 15px;
+    border-radius: 20px;
+}
+
+textarea {
+    border-radius: 20px;
+    padding: 15px;
+}
+
+button {
+    padding: 10px 30px;
+    background: #fff;
+    font-weight: bold;
+    margin: 10px;
+    border-radius: 20px;
+    border: none;
+    background: #0af;
+    color: #fff;
+    font-size: 1rem;
+}
+
+h2 {
+    padding: 10px;
 }

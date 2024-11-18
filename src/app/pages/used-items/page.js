@@ -26,7 +26,7 @@ const Products = () => {
     }, []);
 
     const addToUsedShoppingCart = async (productId) => {
-        const res = await fetch("/api/pro", {
+        const res = await fetch("/api/used-shopping-cart", {
             method: "POST",
             body: JSON.stringify({
                 productId,
@@ -40,18 +40,19 @@ const Products = () => {
 
     return (
         <div className={styles.products}>
-            <button onClick={() => router.push("/products")}>
+            <button onClick={() => router.push("/pages/set-used-item")}>
                 Set product to sell
             </button>
 
             {products &&
                 products.map((product) => (
                     <div key={product._id} className={styles.productContainer}>
-                        <h4>Product name: {product.product_name}</h4>
+                        <h4>{product.product_name}</h4>
                         <img
                             src={`${product?.main_picture?.url}`}
                             alt={`product ${product.product_name}`}
                         />
+
                         <div>
                             <div>
                                 Seller:{" "}
@@ -59,13 +60,19 @@ const Products = () => {
                                     ? product.seller_name
                                     : "Anonym"}
                             </div>
+                            <div>Condition: {product.condition}</div>
+                            <div>Category: {product.category}</div>
+                            <div>
+                                Subcategory:{" "}
+                                {product.subcategory && product.subcategory}
+                            </div>
                             <div>Description: {product.description}</div>
                             <div>Price: {product.price}</div>
                             <div>
                                 <button
                                     onClick={() =>
                                         router.push(
-                                            `/used-items/${product._id}`
+                                            `/pages/used-items/${product._id}`
                                         )
                                     }
                                 >

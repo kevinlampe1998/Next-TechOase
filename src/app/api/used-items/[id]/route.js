@@ -1,9 +1,12 @@
 import UsedItem from "@/models/UsedItem";
 import { NextResponse } from "next/server";
 
-export const GET = async ({ id }) => {
+export const GET = async (req, { params }) => {
     try {
         // const { _id } = req.params;
+
+        const { id } = params;
+
         console.log('id', id);
 
         const product = await UsedItem.findOne({ _id: id })

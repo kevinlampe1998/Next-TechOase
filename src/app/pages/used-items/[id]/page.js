@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useEffect, useState, useContext } from "react";
+import styles from './page.module.css';
 
 
 const Product = ({ params }) => {
@@ -9,7 +10,6 @@ const Product = ({ params }) => {
 
     useEffect(() => {
         const getId = async () => {
-            // Hier warten wir auf `params` (das Promise)
             const resolvedParams = await params;
             setId(resolvedParams.id);
         };
@@ -18,9 +18,6 @@ const Product = ({ params }) => {
     }, [params]);
 
     useEffect(() => {
-        if (id) {
-            console.log(id);  // Ausgabe der ID, sobald sie geladen ist
-        }
         id && fetchProduct();
     }, [id]);
 
@@ -44,8 +41,8 @@ const Product = ({ params }) => {
 
 
     return (
-        <section className="single-product">
-            {/* {product && (
+        <section className={styles.singleProduct}>
+            {product && (
                 <div>
                     <h3>Seller: {product.seller_name}</h3>
                     <h4>Product name: {product.product_name}</h4>
@@ -53,19 +50,21 @@ const Product = ({ params }) => {
                     <div>Description: {product.description}</div>
                     <div>Price: {product.price}</div>
                 </div>
-            )} */}
+            )}
 
             <button>Add to wishlist</button>
             <button>Buy</button>
-            {/* <button onClick={() => naviMailSystem(product._id)}>
+            <button
+                // onClick={() => naviMailSystem(product._id)}
+            >
                 Contact Seller
-            </button> */}
+            </button>
 
-            <div className="product-comments">
+            <div className={styles.productComments}>
                 <h5>Comments and Ratings</h5>
 
                 {[1, 2, 3].map((index) => (
-                    <div key={index} className="single-product-comment">
+                    <div key={index} className={styles.singleProductComment}>
                         <span>Username who comments</span>
                         <span>I like this product</span>
                     </div>

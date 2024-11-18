@@ -4,7 +4,7 @@ export async function middleware(req) {
 
     const { pathname } = req.nextUrl;
   
-    if (pathname === '/register-or-login') {
+    if (pathname === '/pages/register-or-login') {
         return NextResponse.next();
     }
   const token = req?.cookies?.get('token')?.value;
@@ -15,7 +15,7 @@ export async function middleware(req) {
   console.log(token);
 
   if (!token) {
-    return NextResponse.redirect(new URL('/register-or-login', req.url));
+    return NextResponse.redirect(new URL('/pages/register-or-login', req.url));
   }
 
   return NextResponse.next();

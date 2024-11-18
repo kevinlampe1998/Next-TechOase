@@ -1,7 +1,8 @@
 .header {
     background: linear-gradient(15deg, #0af, #000);
     background: #000;
-    border-bottom: 5px solid #0af;
+    /* border-bottom: 5px solid #0af; */
+    padding-bottom: 3px;
 }
 
 .projectName {
@@ -25,7 +26,7 @@
   .navLayout a:link,
   .navLayout a:active,
   .navLayout a:visited {
-    margin: 10px 2px;
+    margin: 2px 2px;
     color: white;
     text-decoration: none;
     background: #000;

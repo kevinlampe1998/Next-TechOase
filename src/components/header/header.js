@@ -14,11 +14,13 @@ const Header = () => {
             <div>Tech Oase</div>
         </h1>
         <nav className={styles.navLayout}>
-            <Link href="/">New in Store</Link>
-            <Link href='/used-items'>Used Items</Link>
+            <Link href='/'>Home</Link>
+            <Link href="/pages/new-in-store">New in Store</Link>
+            <Link href='/pages/used-items'>Used Items</Link>
+            <Link href='/pages/cart'>Cart</Link>
             {
                 localDataBank.user &&
-                <Link href='/user-profile'>{ localDataBank.user?.firstName }</Link>
+                <Link href='/pages/user-profile'>{ localDataBank.user?.firstName }</Link>
             }
 
         </nav>

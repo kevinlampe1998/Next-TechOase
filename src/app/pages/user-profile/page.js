@@ -22,11 +22,11 @@ const Profile = () => {
 
         dispatch({ type: 'users-logout' });
 
-        data.success && router.push('/register-or-login');
+        data.success && router.push('/pages/register-or-login');
     };
 
     const navigateToSeeMyProducts = () => {
-        router.push('/see-my-products');
+        router.push('/pages/see-my-products');
     };
 
     return (

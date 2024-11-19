@@ -3,42 +3,6 @@
 import { useState, useEffect } from "react";
 
 export default function Admin() {
-    const [products, setProducts] = useState([]);
-    const [formData, setFormData] = useState({
-        name: "",
-        price: "",
-        description: "",
-    });
-
-    useEffect(() => {
-        fetchProducts();
-    }, []);
-
-    const fetchProducts = async () => {
-        const res = await fetch("/api/products");
-        const data = await res.json();
-        setProducts(data);
-    };
-
-    const handleAddProduct = async () => {
-        await fetch("/api/products", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(formData),
-        });
-        setFormData({ name: "", price: "", description: "" });
-        fetchProducts();
-    };
-
-    const handleDeleteProduct = async (id) => {
-        await fetch("/api/products", {
-            method: "DELETE",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ id }),
-        });
-        fetchProducts();
-    };
-
     return (
         <div>
             <h1>Welcome to the Admin Panel</h1>

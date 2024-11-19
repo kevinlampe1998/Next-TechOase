@@ -22,5 +22,20 @@ export async function middleware(req) {
 }
 
 export const config = {
-    matcher: ['/', '/:path'],
+    matcher: [
+      '/',
+      '/pages/cart',
+      '/pages/contact',
+      '/pages/faq',
+      '/pages/new-in-store',
+      '/pages/rating',
+      '/pages/see-my-products',
+      '/pages/set-used-item',
+      '/pages/team-project',
+      '/pages/used-items',
+      '/pages/user-profile',
+      // '/pages/',
+      // '/pages/',
+      // '/:path',
+    ],
 };

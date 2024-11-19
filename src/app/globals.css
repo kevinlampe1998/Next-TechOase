@@ -5,9 +5,19 @@
     overflow-x: hidden;
 }
 
+:root {
+    --primary-color: #1A1A1A;
+    --secondary-color: #00CC33;
+    --tertiary-color: #B0B3B8;
+}
+
 body {
     font-family: sans-serif;
     font-weight: bold;
+}
+
+header, footer {
+    color: #B0B3B8;
 }
 
 form {
@@ -37,7 +47,7 @@ button {
     border-radius: 20px;
     border: none;
     background: #0af;
-    color: #fff;
+    color: var(--tertiary-color);
     font-size: 1rem;
 }
 

@@ -20,7 +20,7 @@ const Footer = () => {
                             <Link href="/pages/contact" onClick={scrollToTop}>Contact</Link>
                             <Link href="/pages/rating" onClick={scrollToTop}>Rating</Link>
                             <Link href="/pages/help-chat" onClick={scrollToTop}>Help-Chat</Link>
-                            <Link href="/pages/team" onClick={scrollToTop}>Team</Link>
+                            <Link href="/pages/team-project" onClick={scrollToTop}>Team</Link>
                             <Link href="/pages/faq" onClick={scrollToTop}>FAQ</Link>
                         </>
                 }

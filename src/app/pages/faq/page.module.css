@@ -1,0 +1,31 @@
+.faqPage {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.faqItem {
+    border: 1px solid #ddd;
+    margin: 10px 0;
+    border-radius: 5px;
+    padding: 15px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.faqItem:hover {
+    background-color: #f9f9f9;
+}
+
+.faqQuestion {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.faqAnswer {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+}

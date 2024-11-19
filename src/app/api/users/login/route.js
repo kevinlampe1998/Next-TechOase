@@ -25,7 +25,6 @@ export const POST = async (req, res) => {
         const admin = await Admin.findOne({ email });
         console.log("admin", admin);
         if (admin && password === admin.password) {
-            // Admin erfolgreich eingeloggt
             return NextResponse.json({
                 message: "Admin logged in!",
                 admin,

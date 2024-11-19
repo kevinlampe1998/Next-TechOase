@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
                         <button onClick={hideHelp}>No, please hide</button>
                         <button onClick={navigateToHelp}>Yes, please open help chat</button>
                     </div>
-            </div> */}
+             </div> */}
                 </ContextProvider>
             </body>
         </html>

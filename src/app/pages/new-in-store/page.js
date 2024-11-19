@@ -1,6 +1,6 @@
 "use client";
 
-import newInStore from "@/models/new-in-store";
+import newInStore from "@/models/new-in-store/Computer";
 import { useContext, useEffect, useState, useRef } from "react";
 import { TheContext } from "@/components/context-provider";
 
@@ -51,9 +51,9 @@ const Products = ({ params }) => {
                             alt={product.name}
                             style={{ width: "100%", height: "auto" }}
                         /> */}
-                        <h3>{product.modell}</h3>
-                        <p>Manufacturer: {product.hersteller}</p>
-                        <p>Price: ${product.preis.toFixed(2)}</p>
+                        <h3>{product.model}</h3>
+                        <p>Manufacturer: {product.manufacturer}</p>
+                        <p>Price: ${product.price.toFixed(2)}</p>
                     </div>
                 ))}
             </div>

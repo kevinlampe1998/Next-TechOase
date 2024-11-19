@@ -3,20 +3,25 @@
     flex-direction: column;
     align-items: center;
     gap: 10px;
+    color: var(--tertiary-color);
+}
+
+.seeMyProducts h2 {
+    color: var(--primary-color);
 }
 
 .seeMyProductContainer {
-    border: 3px solid #09f;
     width: 90%;
-    height: 700px;
+    min-height: 700px;
     display: flex;
     flex-direction: column;
     padding: 15px;
     border-radius: 10px;
     gap: 10px;
     max-width: 700px;
-    background: #09f;
+    background: var(--primary-color);
     position: relative;
+    padding-bottom: 100px;
 }
 
 .seeMyProductContainer > *:last-child {
@@ -41,7 +46,7 @@
 
 .seeMyProducts button {
     margin: 10px;
-    background: #07f;
+    background: var(--secondary-color);
     padding: 5px 20px;
     border: none;
     border-radius: 10px;
@@ -50,5 +55,5 @@
 }
 
 .seeMyProductContainer h5 {
-    color: #03f;
+    color: var(--secondary-color);
 }

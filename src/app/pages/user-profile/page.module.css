@@ -7,7 +7,7 @@
 }
 
 .profile button {
-    background: #0bf;
+    background: var(--primary-color);
     color: #fff;
     font-weight: bold;
 }

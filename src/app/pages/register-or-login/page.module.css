@@ -9,12 +9,12 @@
 .register button,
 .login button {
     padding: 10px 30px;
-    background: #fff;
+    background: var(--tertiary-color);
     font-weight: bold;
     margin: 10px;
     border-radius: 10px;
     border: none;
-    background: #0af;
+    background: var(--secondary-color);
     color: #fff;
     font-size: 1rem;
 }
@@ -22,7 +22,7 @@
 .decideRegisterOrLogin > button:hover,
 .register > button:hover,
 .login > button:hover {
-    background: #0cf;
+    background: var(--primary-color);
 }
 
 .register, .login {

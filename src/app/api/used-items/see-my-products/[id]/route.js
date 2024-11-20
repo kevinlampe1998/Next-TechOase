@@ -6,21 +6,17 @@ export const GET = async (req, { params }) => {
     try {
         const { id } = await params;
 
-        console.log(id);
-
         if (!id) {
-            console.log('_id not found!');
             return NextResponse.json({ message: '_id not found!', error: true });
         }
         
-        const foundUsedItems = await UsedItem.find({ user_who_sells: id });
+        const foundUsedItems = await UsedItem.find({ user_who_sells: id })
+            .sort({ createdAt: -1 });
         const usedItems = await UsedItem.populate(foundUsedItems, { path: 'main_picture', model: 'Image' });
 
         if (!usedItems) {
-            console.log('usedItems not found!');
             return NextResponse.json({ message: 'usedItems not found!', error: true });
         }
-        console.log('till here it works');
 
         return NextResponse.json({ message: 'Here are your products!', usedItems });
 
@@ -30,13 +26,23 @@ export const GET = async (req, { params }) => {
     }
 };
 
-export const PATCH = async (req) => {
+export const DELETE = async (req, { params }) => {
     try {
+        const { id } = await params;
 
-        return NextResponse.json({ message: 'Your deal is updated!' });
+        if (!id) {
+            return NextResponse.json({ message: '_id not found!', error: true });
+        }
 
-    } catch (err) {
-        console.log('Error on PATCH /used-items/see-my-products');
+        console.log('id', id);
+
+        const deletedDeal = await UsedItem.deleteOne({ _id: id });
+        console.log(deletedDeal);
+
+        return NextResponse.json({ message: 'Your Deal is successful deleted!', success: true });
+
+    } catch(err) {
+        console.log('Error on DELETE /used-items/see-my-products/:_id');
         return NextResponse.json({ message: 'Something went wrong!' });
     }
 };

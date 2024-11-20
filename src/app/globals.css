@@ -46,8 +46,8 @@ button {
     margin: 10px;
     border-radius: 20px;
     border: none;
-    background: #0af;
-    color: var(--tertiary-color);
+    background: var(--secondary-color);
+    color: var(--primary-color);
     font-size: 1rem;
 }
 

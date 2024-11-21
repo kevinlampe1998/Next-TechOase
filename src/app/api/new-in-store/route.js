@@ -1,23 +1,30 @@
-// import Product from "@/models/new-in-store";
+import Computer from "@/models/new-in-store/Computer";
 import connectMongo from "@/lib/connectMongo";
 import { NextResponse } from "next/server";
+import Image from "@/models/Image";
 
-export default async function GET(req, res) {
-    //     if (req.method === "GET") {
-    //         try {
-    //             // Verbindung zur MongoDB herstellen
-    //             await connectMongo();
-    //             // Produkte abrufen
-    //             const products = await Product.find({});
-    //             return NextResponse.json(products);
-    //         } catch (error) {
-    //             return NextResponse.json({
-    //                 message: "Error fetching products",
-    //                 error,
-    //             });
-    //         }
-    //     } else {
-    //         return NextResponse.json({ message: "Method not allowed" });
-    //     }
-}
-//kommentar
+export const POST = async (req, res) => {
+    try {
+        const body = await req.json();
+        console.log("body", body);
+
+        const newComputer = new Computer(body);
+        console.log("newComputer", newComputer);
+
+        const savedComputer = await newComputer.save();
+        console.log("savedComputer", savedComputer);
+
+        connectMongo();
+
+        return NextResponse.json({
+            message: "your laptop is successful saved!",
+            success: 1,
+        });
+    } catch (error) {
+        console.log("Error on POST /api/new-in-store");
+        return NextResponse.json({
+            message: "Something went wrong!",
+            error: 1,
+        });
+    }
+};

@@ -1,6 +1,5 @@
 "use client";
 
-import newInStore from "@/models/new-in-store/Computer";
 import { useContext, useEffect, useState, useRef } from "react";
 import { TheContext } from "@/components/context-provider";
 
@@ -35,28 +34,6 @@ const Products = ({ params }) => {
     return (
         <div>
             <h1>Products</h1>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
-                {products.map((product) => (
-                    <div
-                        key={product._id}
-                        style={{
-                            border: "1px solid #ccc",
-                            padding: "10px",
-                            width: "200px",
-                            textAlign: "center",
-                        }}
-                    >
-                        {/* <img
-                            src={product.image}
-                            alt={product.name}
-                            style={{ width: "100%", height: "auto" }}
-                        /> */}
-                        <h3>{product.model}</h3>
-                        <p>Manufacturer: {product.manufacturer}</p>
-                        <p>Price: ${product.price.toFixed(2)}</p>
-                    </div>
-                ))}
-            </div>
         </div>
     );
 };

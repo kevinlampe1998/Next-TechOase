@@ -56,9 +56,18 @@ const SetUsedItem = () => {
     const [ imageUploadSuccess, setImageUploadSuccess ] = useState(false);
     const [ image, setImage ] = useState(null);
     const router = useRouter();
+    const [ imagePreview, setImagePreview ] = useState();
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
+
+        if (file) {
+            const imageURL = URL.createObjectURL(file);
+            setImagePreview(imageURL);
+        }
+
+        if (!file) setImagePreview(null); 
+
         if (!file) return;
         const reader = new FileReader();
         reader.onloadend = () => setImage(reader.result);
@@ -169,8 +178,16 @@ const SetUsedItem = () => {
             <label htmlFor="">Product name</label>
             <input type="text" value={usedItem.product_name} onChange={(e) => setUsedItem((prev) => ({ ...prev, product_name: e.target.value }))}/>
 
-            <label htmlFor="">Main Picture</label>
+            <label htmlFor="" className={styles.fileLabel}>Main Picture</label>
             <input type="file" onChange={handleFileChange}/>
+
+            {imagePreview && (
+                <img 
+                    src={imagePreview} 
+                    alt="Preview"
+                    className={styles.imagePreviewClass}
+                />
+            )}
 
             <div>
                 <label>Condition</label>
@@ -234,7 +251,7 @@ const SetUsedItem = () => {
             <label htmlFor="">Price</label>
             <input type="text" value={usedItem.price} onChange={(e) => correctPrice(e)}/>
 
-            <button type='submit'>Submit</button>
+            <button className={styles.submitButton} type='submit'>Submit</button>
             <h3 ref={docMessage}></h3>
             <h3 ref={picMessage}></h3>
         </form>

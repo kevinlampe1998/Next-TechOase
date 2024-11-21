@@ -3,6 +3,7 @@
 import styles from './page.module.css';
 import { useContext, useEffect, useState, useRef } from "react";
 import { TheContext } from '@/components/context-provider';
+import { useRouter } from 'next/navigation';
 
 const SubCategories = {
     "Computers & Laptops":
@@ -40,6 +41,7 @@ const SubCategories = {
 const MyProduct = ({props: props}) => {
     const productContainer = useRef();
     const [ product, setProduct ] = useState({
+        id: '',
         user_who_sells: '',
         seller_name: '',
         product_name: '',
@@ -56,6 +58,7 @@ const MyProduct = ({props: props}) => {
     const subcategoryRef = useRef();
     const [ select, setSelect ] = useState(false);
     const [ image, setImage ] = useState();
+    const router = useRouter();
 
     const correctPrice = (event) => {
         const value = event.target.value;
@@ -107,21 +110,17 @@ const MyProduct = ({props: props}) => {
     };
 
     const deleteProduct = async (_id) => {
-        const res = await fetch(`http://localhost:3000/used-items/${_id}`, { method: 'DELETE' });
+        const res = await fetch(`/api/used-items/see-my-products/${_id}`, { method: 'DELETE' });
         const data = await res.json();
 
-        location.reload();
-    };
-
-    const updateProduct = async (event) => {
-        event.preventDefault();
-
+        console.log(data);
+        data.success && router.push('/pages/see-my-products/delete-success');
     };
 
     const changeToForm = () => {
         setUpdateForm(true);
         setSelect(true);
-
+        
     };
     
     useEffect(() => {
@@ -144,14 +143,22 @@ const MyProduct = ({props: props}) => {
                 }
             });
 
-
+            console.log('props._id', props._id);
+            
+            setProduct(prev => ({
+                ...prev,
+                product_name: props.product_name,
+                description: props.description,
+                price: props.price,
+                id: props._id
+            }));
         }
     }, [select]);
-
+    
     useEffect(() => {
         if (product.category) {
             const subcategoryChildren = subcategoryRef.current.children;
-
+            
             Object.values(subcategoryChildren).map((child) => {
                 
                 if (child.value === props.subcategory) {
@@ -160,10 +167,54 @@ const MyProduct = ({props: props}) => {
             });
         }
     }, [product.category]);
+    
+    const handleUpload = async () => {
+    
+        const response = await fetch('/api/image', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ data: image }),
+        });
+        const data = await response.json();
+        console.log(data);
+
+        data.success && setProduct(prev => ({ ...prev, main_picture: data.image }));
+      };
+
+
+    const connectBackend = async () => {
+        console.log('product shown in connectBackend', product);
+        const res = await fetch('/api/used-items/see-my-products', {
+            method: 'PATCH',
+            body: JSON.stringify(product),
+            headers: { 'content-type': 'application/json' }
+        });
+        const data = await res.json();
+        console.log(data);
+
+        data.success && router.push('/pages/see-my-products/update-success');
+    };
+
+    const updateProduct = async (event) => {
+        event.preventDefault();
+
+        console.log('updateProduct executed!');
+        console.log('product', product);
+
+        image ? handleUpload() : connectBackend();
+    };
 
     useEffect(() => {
-        console.log(product);
-    });
+        if (product.main_picture) {
+            connectBackend();
+        }
+    }, [product.main_picture]);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     return (
         <>
@@ -171,17 +222,23 @@ const MyProduct = ({props: props}) => {
                 updateForm ?
                     <div ref={productContainer} className={styles.seeMyProductContainer}>
                             <h5>Product Name</h5>
-                            <input type='text' placeholder={product.product_name}/>
+                            <input type='text' value={product.product_name}
+                                onChange={e => setProduct(prev => ({ ...prev, product_name: e.target.value }))}
+                            />
 
                             <img src={props.main_picture?.url} alt={product.product_name} />
 
                             <h5>Main Picture</h5>
-                            <input type='file' onChange={handleFileChange} />
+                            <input
+                                type='file'
+                                onChange={handleFileChange}
+                            />
 
                             <h5>Condition:</h5>
                             <div>
-                                <select ref={conditionRef} id="category" name="category" value={product.condition} onChange={(e) => setProduct((prev) => ({ ...prev, condition: e.target.value }))}
-                                    // required
+                                <select ref={conditionRef} id="category" name="category"
+                                    value={product.condition}
+                                    onChange={(e) => setProduct((prev) => ({ ...prev, condition: e.target.value }))}
                                 >
                                     <option value='New'>New</option>
                                     <option value='Used'>Used</option>
@@ -207,14 +264,8 @@ const MyProduct = ({props: props}) => {
 
                                     <div>
                                         <select ref={subcategoryRef} id="category" name="category" value={product.subcategory} onChange={(e) => setProduct((prev) => ({ ...prev, subcategory: e.target.value }))}
-                                            // required
                                         >
                                             {
-                                                // (
-                                                //     console.log('SubCategories', SubCategories),
-                                                //     console.log('product.category', product.category),
-                                                //     console.log('SubCategories[product.category]', SubCategories[product.category])
-                                                // )
                                                 SubCategories[product.category].map((option, index) => <option value={option} key={index}>{option}</option>)
                                             }
                                         </select>
@@ -226,7 +277,6 @@ const MyProduct = ({props: props}) => {
                                 (
                                     <div>
                                         <select ref={subcategoryRef} id="category" name="category" value={product.subcategory} onChange={(e) => setProduct((prev) => ({ ...prev, subcategory: e.target.value }))}
-                                            // required
                                         >
                                         <option value='' disabled>Select a main category first</option>
                                         </select>
@@ -235,17 +285,15 @@ const MyProduct = ({props: props}) => {
                             }
 
                             <h5>Description:</h5>
-                            <div>{props.description}</div>
                             <textarea name="" id="" value={product.description} onChange={(e) => setProduct((prev) => ({ ...prev, description: e.target.value }))}></textarea>            
 
                             <h5>Price:</h5>
-                            <div>{props.price}</div>
                             <input type="text" value={product.price} onChange={(e) => correctPrice(e)}/>
 
                             <div>
 
                                 <button
-                                    // onClick={changeToForm}
+                                    onClick={updateProduct}
                                 >Update</button>
 
                             </div>
@@ -282,7 +330,7 @@ const MyProduct = ({props: props}) => {
                                     onClick={changeToForm}
                                 >Change</button>
                                 <button
-                                    // onClick={() => deleteProduct(props._id)}
+                                    onClick={() => deleteProduct(props._id)}
                                 >Delete</button>
                             </div>
 

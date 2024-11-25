@@ -147,7 +147,10 @@ export default function Admin() {
                     name="price"
                     value={product.price}
                     onChange={(e) =>
-                        setProduct({ ...product, price: e.target.value })
+                        setProduct({
+                            ...product,
+                            price: Number(e.target.value),
+                        })
                     }
                 />
 
@@ -195,7 +198,7 @@ export default function Admin() {
                                 ...product.specifications,
                                 processor: {
                                     ...product.specifications.processor,
-                                    cores: e.target.value, // Den neuen Wert zuweisen
+                                    cores: Number(e.target.value), // Den neuen Wert zuweisen
                                 },
                             },
                         })
@@ -214,7 +217,7 @@ export default function Admin() {
                                 ...product.specifications,
                                 memory: {
                                     ...product.specifications.memory,
-                                    size: e.target.value, // Den neuen Wert zuweisen
+                                    size: Number(e.target.value), // Den neuen Wert zuweisen
                                 },
                             },
                         })
@@ -272,7 +275,7 @@ export default function Admin() {
                                 ...product.specifications,
                                 display: {
                                     ...product.specifications.display,
-                                    size: e.target.value, // Den neuen Wert zuweisen
+                                    size: Number(e.target.value), // Den neuen Wert zuweisen
                                 },
                             },
                         })
@@ -327,7 +330,7 @@ export default function Admin() {
                                 ...product.specifications,
                                 display: {
                                     ...product.specifications.display,
-                                    touchscreen: e.target.value, // Den neuen Wert zuweisen
+                                    touchscreen: e.target.checked, // Den neuen Wert zuweisen
                                 },
                             },
                         })
@@ -364,7 +367,7 @@ export default function Admin() {
                                 ...product.specifications,
                                 graphics: {
                                     ...product.specifications.graphics,
-                                    vram: e.target.value, // Den neuen Wert zuweisen
+                                    vram: Number(e.target.value), // Den neuen Wert zuweisen
                                 },
                             },
                         })
@@ -402,7 +405,7 @@ export default function Admin() {
                                 ...product.specifications,
                                 storage: {
                                     ...product.specifications.storage,
-                                    capacity: e.target.value, // Den neuen Wert zuweisen
+                                    capacity: Number(e.target.value), // Den neuen Wert zuweisen
                                 },
                             },
                         })
@@ -421,7 +424,7 @@ export default function Admin() {
                                 ...product.specifications,
                                 battery: {
                                     ...product.specifications.battery,
-                                    capacity: e.target.value, // Den neuen Wert zuweisen
+                                    capacity: Number(e.target.value), // Den neuen Wert zuweisen
                                 },
                             },
                         })
@@ -471,7 +474,10 @@ export default function Admin() {
                     name="weight"
                     value={product.weight}
                     onChange={(e) =>
-                        setProduct({ ...product, weight: e.target.value })
+                        setProduct({
+                            ...product,
+                            weight: Number(e.target.value),
+                        })
                     }
                 />
 

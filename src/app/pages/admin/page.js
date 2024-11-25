@@ -45,7 +45,7 @@ export default function Admin() {
                 runtime: "", // Runtime (e.g., "up to 10 hours")
             },
             ports: {
-                type: [], // String // List of ports (e.g., "2x USB-C 4.0")
+                type: "", // String // List of ports (e.g., "2x USB-C 4.0")
             },
         },
         weight: 0, // Weight of the product (in kg)
@@ -112,7 +112,7 @@ export default function Admin() {
 
     useEffect(() => {
         console.log(product);
-        console.log(image);
+        // console.log(image);
     });
 
     return (
@@ -194,7 +194,7 @@ export default function Admin() {
                             specifications: {
                                 ...product.specifications,
                                 processor: {
-                                    ...product.specifications.cores,
+                                    ...product.specifications.processor,
                                     cores: e.target.value, // Den neuen Wert zuweisen
                                 },
                             },
@@ -213,7 +213,7 @@ export default function Admin() {
                             specifications: {
                                 ...product.specifications,
                                 memory: {
-                                    ...product.specifications.size,
+                                    ...product.specifications.memory,
                                     size: e.target.value, // Den neuen Wert zuweisen
                                 },
                             },
@@ -232,7 +232,7 @@ export default function Admin() {
                             specifications: {
                                 ...product.specifications,
                                 memory: {
-                                    ...product.specifications.type,
+                                    ...product.specifications.memory,
                                     type: e.target.value, // Den neuen Wert zuweisen
                                 },
                             },
@@ -251,7 +251,7 @@ export default function Admin() {
                             specifications: {
                                 ...product.specifications,
                                 memory: {
-                                    ...product.specifications.speed,
+                                    ...product.specifications.memory,
                                     speed: e.target.value, // Den neuen Wert zuweisen
                                 },
                             },
@@ -271,7 +271,7 @@ export default function Admin() {
                             specifications: {
                                 ...product.specifications,
                                 display: {
-                                    ...product.specifications.size,
+                                    ...product.specifications.display,
                                     size: e.target.value, // Den neuen Wert zuweisen
                                 },
                             },
@@ -290,7 +290,7 @@ export default function Admin() {
                             specifications: {
                                 ...product.specifications,
                                 display: {
-                                    ...product.specifications.resolution,
+                                    ...product.specifications.display,
                                     resolution: e.target.value, // Den neuen Wert zuweisen
                                 },
                             },
@@ -303,7 +303,16 @@ export default function Admin() {
                     name="type"
                     value={product.specifications.display.type}
                     onChange={(e) =>
-                        setProduct({ ...product, type: e.target.value })
+                        setProduct({
+                            ...product,
+                            specifications: {
+                                ...product.specifications,
+                                display: {
+                                    ...product.specifications.display,
+                                    type: e.target.value, // Den neuen Wert zuweisen
+                                },
+                            },
+                        })
                     }
                 />
                 <label>Touchscreen:</label>
@@ -314,7 +323,13 @@ export default function Admin() {
                     onChange={(e) =>
                         setProduct({
                             ...product,
-                            touchscreen: e.target.checked,
+                            specifications: {
+                                ...product.specifications,
+                                display: {
+                                    ...product.specifications.display,
+                                    touchscreen: e.target.value, // Den neuen Wert zuweisen
+                                },
+                            },
                         })
                     }
                 />
@@ -386,7 +401,7 @@ export default function Admin() {
                             specifications: {
                                 ...product.specifications,
                                 storage: {
-                                    ...product.specifications.capacity,
+                                    ...product.specifications.storage,
                                     capacity: e.target.value, // Den neuen Wert zuweisen
                                 },
                             },

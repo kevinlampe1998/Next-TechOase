@@ -3,9 +3,6 @@
     padding: 0;
     box-sizing: border-box;
     overflow-x: hidden;
-}
-
-:root {
     --primary-color: #1A1A1A;
     --secondary-color: #00CC33;
     --tertiary-color: #B0B3B8;

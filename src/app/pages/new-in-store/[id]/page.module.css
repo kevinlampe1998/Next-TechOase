@@ -1,21 +1,4 @@
-.NewInStore img {
-    height: 400px;
-    width: 400px;
-    object-fit: cover;
-}
-
-.NewInStore {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* margin: 20px;
-    padding: 20px;
-    border: 1px solid #e0e0e0;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
-}
-
-.NewInStoreProduct {
+.productDetail {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -24,4 +7,15 @@
     border: 1px solid #e0e0e0;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    padding: 20px;
+    /* border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
 }

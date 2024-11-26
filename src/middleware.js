@@ -8,11 +8,6 @@ export async function middleware(req) {
         return NextResponse.next();
     }
   const token = req?.cookies?.get('token')?.value;
-  //   const token = await req?.cookies?._parsed?.get('token')?.value;
-
-  //   console.log('Middleware executed for:', req.url);
-
-  console.log(token);
 
   if (!token) {
     return NextResponse.redirect(new URL('/pages/register-or-login', req.url));

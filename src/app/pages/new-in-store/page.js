@@ -1,7 +1,7 @@
 "use client";
 
 import { useContext, useEffect, useState, useRef } from "react";
-import { TheContext } from "@/components/context-provider";
+import { TheContext } from "@/components/context-provider/component";
 
 const Products = ({ params }) => {
     const [id, setId] = useState(null);

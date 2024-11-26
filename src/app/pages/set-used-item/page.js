@@ -1,11 +1,11 @@
 'use client';
 
 import { useState, useRef, useContext, useEffect } from 'react';
-import { TheContext } from '@/components/context-provider';
+import { TheContext } from '@/components/context-provider/component';
 import styles from './page.module.css';
 import { useRouter } from 'next/navigation';
 
-const SubCategories = {
+ export const SubCategories = {
           "Computers & Laptops":
           ['Gaming Laptops', 'Ultrabooks', 'MacBooks', 'Business Laptops', '2-in-1 Laptops',
           'Desktop PCs', 'All-in-One PCs'],

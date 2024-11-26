@@ -1,22 +1,32 @@
 "use client";
 
-import { useEffect, useState, useContext } from "react";
-import { TheContext } from "@/components/context-provider";
+import { useEffect, useState, useContext, useRef } from "react";
+import { TheContext } from "@/components/context-provider/component";
 import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
+import { SubCategories } from "../set-used-item/page";
 
 const Products = () => {
     const router = useRouter();
     const [products, setProducts] = useState();
     const { localDataBank, dispatch } = useContext(TheContext);
+    const [ filter, setFilter ] = useState({
+        query: '',
+        category: '',
+        subcategory: '',
+        page: 0
+    });
+    const prevButton = useRef();
+    const nextButton = useRef();
+    const [ categoryNav, setCategoryNav ] = useState(false);
+    const [ subCategoryNav, setSubcategoryNav ] = useState(false);
 
     const getProducts = async () => {
-        const res = await fetch("/api/used-items");
+        const res = await fetch(`/api/used-items/query`, {
+            method: 'POST',
+            body: JSON.stringify(filter)
+        });
         const data = await res.json();
-        console.log("getProducts data", data);
-
-        // const idChanged = data.products.map(product =>
-        //     ({ ...product, id: product._id }));
 
         setProducts(data.products);
     };
@@ -25,26 +35,87 @@ const Products = () => {
         getProducts();
     }, []);
 
-    const addToUsedShoppingCart = async (productId) => {
-        const res = await fetch("/api/used-shopping-cart", {
-            method: "POST",
-            body: JSON.stringify({
-                productId,
-                userId: localDataBank.user._id,
-            }),
-            headers: { "content-type": "application/json" },
-        });
+    useEffect(() => {
+        setProducts(null);
+        getProducts();
+        window.scrollTo(0, 0);
+    }, [filter]);
 
-        const data = await res.json();
-    };
+    useEffect(() => {
+        console.log(filter);
+        console.log(products);
+        console.log(SubCategories[filter.category]);
+    });
+
+    useEffect(() => {
+        console.log(prevButton.current);
+        filter.page < 1 ? 
+            (prevButton.current.style.display = 'none')
+            : (prevButton.current.style.display = 'block');
+
+    }, [filter.page]);
+
+    useEffect(() => {
+        setFilter(prev => ({ ...prev, subcategory: '' }));
+    }, [filter.category]);
 
     return (
         <div className={styles.products}>
-            <button onClick={() => router.push("/pages/set-used-item")}>
-                Set product to sell
-            </button>
 
-            {products &&
+            <div className={styles.search}>
+                <input onChange={(e) => setFilter(prev => ({ ...prev, query: e.target.value }))}/>
+                <button>Search</button>
+            </div>
+
+            <div className={styles.searchByCategory}>
+                <button onClick={() => setCategoryNav(!categoryNav)}>Search by category</button>
+            </div>
+            {
+                categoryNav && 
+                    <nav className={styles.userDealsCategories}>
+                        <button
+                            onClick={(e) => setFilter(prev => ({ ... prev, category: 'Computers & Laptops' }))}
+                        >Computers & Laptops</button>
+                        <button
+                            onClick={(e) => setFilter(prev => ({ ... prev, category: 'Components' }))}
+                        >Components</button>
+                        <button
+                            onClick={(e) => setFilter(prev => ({ ... prev, category: 'Peripherals' }))}
+                        >Peripherals</button>
+                        <button
+                            onClick={(e) => setFilter(prev => ({ ... prev, category: 'Networking' }))}
+                        >Networking</button>
+                        <button
+                            onClick={(e) => setFilter(prev => ({ ... prev, category: 'Mobile Devices' }))}
+                        >Mobile Devices</button>
+                        <button
+                            onClick={(e) => setFilter(prev => ({ ... prev, category: 'Gaming' }))}
+                        >Gaming</button>
+                        <button
+                            onClick={(e) => setFilter(prev => ({ ... prev, category: 'Audio & Video' }))}
+                        >Audio & Video</button>
+                        <button
+                            onClick={(e) => setFilter(prev => ({ ... prev, category: 'Smart Home' }))}
+                        >Smart Home</button>
+                    </nav>
+            }
+
+            {
+                filter.category !== '' &&
+                    <nav>
+                        {
+                            SubCategories[filter.category]?.map((subcategory, index) => (
+                                <button
+                                    onClick={() => setFilter(prev => ({ ...prev, subcategory }))}
+                                    key={index}>{subcategory}</button>
+                            ))
+                        }
+                    </nav> 
+            }
+
+            <div className={styles.usedItemsSpace}></div>
+
+            {products ?
                 products.map((product) => (
                     <div key={product._id} className={styles.productContainer}>
                         <h4>{product.product_name}</h4>
@@ -80,16 +151,25 @@ const Products = () => {
                                 </button>
                                 <button>Add to wishlist</button>
                                 <button
-                                    onClick={() =>
-                                        addToUsedShoppingCart(product._id)
-                                    }
+                                    // onClick={() =>
+                                        // addToUsedShoppingCart(product._id)
+                                    // }
                                 >
                                     Add to shopping cart
                                 </button>
                             </div>
                         </div>
                     </div>
-                ))}
+
+                    ))
+            
+                    : <h3>... loading</h3>
+                }
+
+                <div className={styles.prevNext}>
+                    <button ref={prevButton} onClick={() => setFilter(prev => ({ ...prev, page: filter.page - 10 }))}>Prev</button>
+                    <button ref={nextButton} onClick={() => setFilter(prev => ({ ...prev, page: filter.page + 10 }))}>Next</button>
+                </div>
         </div>
     );
 };

@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, createContext, useContext, useEffect } from "react";
-import { TheContext } from "@/components/context-provider";
+import { TheContext } from "@/components/context-provider/component";
 import styles from "./page.module.css";
 import { useRouter } from "next/navigation";
 

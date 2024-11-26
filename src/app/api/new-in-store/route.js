@@ -28,3 +28,23 @@ export const POST = async (req, res) => {
         });
     }
 };
+
+export const GET = async (req, res) => {
+    try {
+        connectMongo();
+        const foundComputers = await Computer.find();
+
+        const computers = await Computer.populate(foundComputers, {
+            path: "main_picture",
+            model: "Image",
+        });
+
+        return NextResponse.json(computers);
+    } catch (error) {
+        console.log("Error on GET /api/new-in-store");
+        return NextResponse.json({
+            message: "Something went wrong!",
+            error: 1,
+        });
+    }
+};

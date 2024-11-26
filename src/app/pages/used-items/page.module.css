@@ -3,7 +3,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    /* gap: 10px; */
 }
 
 .products > button:first-child {
@@ -22,6 +22,7 @@
     max-width: 700px;
     background: var(--primary-color);
     color: var(--secondary-color);
+    margin: 5px 0;
 }
 
 .productContainer img {
@@ -50,4 +51,70 @@
     font-weight: bold;
     font-size: 0.8rem;
     color: var(--primary-color);
+}
+
+.userDealsCategories {
+    background: var(--primary-color);
+    /* transform: translateY(-10px); */
+    padding-bottom: 10px;
+    width: 100%;
+}
+
+.userDealsCategories button {
+    color: #fff;
+    background: var(--primary-color);
+    border: 3px solid var(--secondary-color);
+}
+
+.userDealsCategories button:hover {
+    background: var(--secondary-color);
+} 
+
+.search {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background: var(--primary-color);
+    width: 100%;
+}
+
+.search input {
+    padding: 0 15px;
+    height: 40px;
+    width: 60vw;
+    max-width: 400px;
+}
+
+.search button {
+    padding: 10px;
+    width: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+}
+
+.prevNext {
+    display: flex;
+}
+
+.prevNext button {
+    padding: 10px 25px;
+    border-radius: 20px;
+}
+
+.prevNext button:hover {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+.searchByCategory {
+    background: var(--primary-color);
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.usedItemsSpace {
+    height: 10px;
 }

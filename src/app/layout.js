@@ -1,5 +1,5 @@
 import "./globals.css";
-import ContextProvider from "@/components/context-provider";
+import ContextProvider from "@/components/context-provider/component";
 import Header from "@/components/header/header";
 import Footer from "@/components/footer/footer";
 

@@ -1,7 +1,7 @@
 'use client';
 
 import { useContext } from "react";
-import { TheContext } from "../context-provider";
+import { TheContext } from "../context-provider/component";
 import Link from "next/link";
 import styles from './footer.module.css';
 

@@ -3,7 +3,7 @@
 // import './UserProfile.css';
 import styles from './page.module.css';
 import { useContext } from 'react';
-import { TheContext } from '@/components/context-provider';
+import { TheContext } from '@/components/context-provider/component';
 import { useRouter } from 'next/navigation';
 
 const Profile = () => {
@@ -32,6 +32,7 @@ const Profile = () => {
     return (
         <section className={styles.profile}>
                 <button onClick={logout} href="#">Logout</button>
+                <button onClick={() => router.push('/pages/set-used-item')}>Set product to sell</button>
                 <button onClick={navigateToSeeMyProducts}>See my Products</button>
                 <button>Settings</button>
                 <button>My Profile Data</button>

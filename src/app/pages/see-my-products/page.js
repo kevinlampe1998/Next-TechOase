@@ -2,7 +2,7 @@
 
 import styles from './page.module.css';
 import { useContext, useEffect, useState, useRef } from "react";
-import { TheContext } from '@/components/context-provider';
+import { TheContext } from '@/components/context-provider/component';
 import { useRouter } from 'next/navigation';
 
 const SubCategories = {

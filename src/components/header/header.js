@@ -3,7 +3,7 @@
 import styles from "./header.module.css";
 import { useState, useContext, useRef, useEffect } from "react";
 import Link from "next/link";
-import { TheContext } from "../context-provider";
+import { TheContext } from "../context-provider/component";
 
 const Header = () => {
     const { localDataBank, dispatch } = useContext(TheContext);

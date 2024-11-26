@@ -1,6 +1,7 @@
 import "./globals.css";
 import ContextProvider from "@/components/context-provider/component";
 import Header from "@/components/header/header";
+import HeaderSpace from "@/components/header-space/component";
 import Footer from "@/components/footer/footer";
 
 export const metadata = {
@@ -14,6 +15,7 @@ export default function RootLayout({ children }) {
             <body>
                 <ContextProvider>
                     <Header />
+                    <HeaderSpace />
 
                     <main>{children}</main>
 

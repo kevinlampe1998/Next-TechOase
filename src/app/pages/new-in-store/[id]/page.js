@@ -1,10 +1,20 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import styles from "./page.module.css";
+import { TheContext } from "@/components/context-provider/component";
 
 const ProductDetails = ({ params }) => {
+    const { localDataBank, dispatch } = useContext(TheContext);
     const [id, setId] = useState(null);
+
+    const [product, setProduct] = useState(null);
+
+    // const [payload, setPayload] = useState({
+    //     userId: localDataBank.user._id,
+    //     productId: id,
+    //     category: "Computer",
+    // });
 
     useEffect(() => {
         const getId = async () => {
@@ -15,9 +25,27 @@ const ProductDetails = ({ params }) => {
         getId();
     }, [params]);
 
-    const [product, setProduct] = useState(null);
-    // const [loading, setLoading] = useState(true);
-    // const [error, setError] = useState(null);
+    const addToCart = async () => {
+        console.log({
+            userId: localDataBank.user._id,
+            productId: id,
+            category: "Computer",
+        });
+        const response = await fetch(`/api/cart`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                userId: localDataBank.user._id,
+                productId: id,
+                category: "Computer",
+            }),
+        });
+        const data = await response.json();
+
+        console.log("addToCart data", data);
+    };
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -29,28 +57,12 @@ const ProductDetails = ({ params }) => {
                 console.log("fetchProduct data", data);
                 setProduct(data);
             } catch (err) {
-                // setError(err.message);
-                // } finally {
-                //     setLoading(false);
-
                 console.log(`error pages/new-in-store/id: ${err}`);
             }
         };
 
         fetchProduct();
     }, [id]);
-
-    // if (loading) {
-    //     return <div className="loading">Lädt...</div>;
-    // }
-
-    // if (error) {
-    //     return <div className="error">{error}</div>;
-    // }
-
-    // if (!product) {
-    //     return <div>Produkt nicht gefunden.</div>;
-    // }
 
     return (
         <div className={styles.productDetail}>
@@ -69,11 +81,11 @@ const ProductDetails = ({ params }) => {
                             />
                         )}
                         <p>
-                            <strong>Preis:</strong> {product.price} €
+                            <strong>Price:</strong> {product.price} €
                         </p>
                         <p>
-                            <strong>Verfügbar:</strong>{" "}
-                            {product.available ? "Ja" : "Nein"}
+                            <strong>Available:</strong>{" "}
+                            {product.available ? "Yes" : "No"}
                         </p>
                         <p>
                             <strong>Details:</strong>
@@ -86,7 +98,9 @@ const ProductDetails = ({ params }) => {
                                 </li>
                             ))}
                         </ul>
-                        <button className="buy-button">Warenkorb</button>
+                        <button onClick={addToCart} className="buy-button">
+                            Add to Cart
+                        </button>
                     </div>
                 )}
             </div>

@@ -1,13 +1,9 @@
-'use client';
+"use client";
 
-import styles from './page.module.css';
+import styles from "./page.module.css";
 
 const Cart = () => {
-    return (
-        <main>
-            Cart
-        </main>
-    );
+    return <main>Cart</main>;
 };
 
 export default Cart;

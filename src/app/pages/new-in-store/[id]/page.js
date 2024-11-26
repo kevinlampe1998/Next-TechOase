@@ -15,7 +15,7 @@ const ProductDetails = ({ params }) => {
         getId();
     }, [params]);
 
-    // const [product, setProduct] = useState(null);
+    const [product, setProduct] = useState(null);
     // const [loading, setLoading] = useState(true);
     // const [error, setError] = useState(null);
 
@@ -25,7 +25,9 @@ const ProductDetails = ({ params }) => {
                 const response = await fetch(`/api/new-in-store/${id}`);
 
                 const data = await response.json();
-                // setProduct(data);
+
+                console.log("fetchProduct data", data);
+                setProduct(data);
             } catch (err) {
                 // setError(err.message);
                 // } finally {
@@ -36,7 +38,7 @@ const ProductDetails = ({ params }) => {
         };
 
         fetchProduct();
-    }, [productId]);
+    }, [id]);
 
     // if (loading) {
     //     return <div className="loading">Lädt...</div>;
@@ -52,36 +54,42 @@ const ProductDetails = ({ params }) => {
 
     return (
         <div className={styles.productDetail}>
-            {/* <div className="card">
-                <h1>
-                    {product.manufacturer} - {product.model}
-                </h1>
-                {product.main_picture && (
-                    <img
-                        src={product.main_picture}
-                        alt={`${product.model}`}
-                        className="product-image"
-                    />
+            <h1>Product Details</h1>
+            <div className={styles.card}>
+                {product && (
+                    <div>
+                        <h1>
+                            {product.manufacturer} - {product.model}
+                        </h1>
+                        {product.main_picture && (
+                            <img
+                                src={product?.main_picture?.url}
+                                alt={`${product.model}`}
+                                className="product-image"
+                            />
+                        )}
+                        <p>
+                            <strong>Preis:</strong> {product.price} €
+                        </p>
+                        <p>
+                            <strong>Verfügbar:</strong>{" "}
+                            {product.available ? "Ja" : "Nein"}
+                        </p>
+                        <p>
+                            <strong>Details:</strong>
+                        </p>
+                        <ul>
+                            {Object.entries(product).map(([key, value]) => (
+                                <li key={key}>
+                                    <strong>{key}:</strong>{" "}
+                                    {JSON.stringify(value)}
+                                </li>
+                            ))}
+                        </ul>
+                        <button className="buy-button">Warenkorb</button>
+                    </div>
                 )}
-                <p>
-                    <strong>Preis:</strong> {product.price} €
-                </p>
-                <p>
-                    <strong>Verfügbar:</strong>{" "}
-                    {product.available ? "Ja" : "Nein"}
-                </p>
-                <p>
-                    <strong>Details:</strong>
-                </p>
-                <ul>
-                    {Object.entries(product).map(([key, value]) => (
-                        <li key={key}>
-                            <strong>{key}:</strong> {JSON.stringify(value)}
-                        </li>
-                    ))}
-                </ul>
-                <button className="buy-button">Warenkorb</button>
-            </div> */}
+            </div>
         </div>
     );
 };

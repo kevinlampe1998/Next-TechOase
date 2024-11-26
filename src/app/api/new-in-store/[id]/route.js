@@ -1,7 +1,7 @@
 import connectMongo from "@/lib/connectMongo";
 import Computer from "@/models/new-in-store/Computer";
 import { NextResponse } from "next/server";
-import Image from "@/models/new-in-store/Image";
+import Image from "@/models/Image";
 
 export const GET = async (req, { params }) => {
     try {

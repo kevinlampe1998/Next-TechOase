@@ -22,7 +22,8 @@
     max-width: 700px;
     background: var(--primary-color);
     color: var(--secondary-color);
-    margin: 5px 0;
+    margin: 25px 0;
+    box-shadow: 5px 5px 25px 5px var(--primary-color);
 }
 
 .productContainer img {
@@ -113,6 +114,11 @@
     width: 100%;
     display: flex;
     align-items: center;
+}
+
+.searchByCategory button {
+    transform: translateY(-10px);
+    z-index: 20;
 }
 
 .usedItemsSpace {

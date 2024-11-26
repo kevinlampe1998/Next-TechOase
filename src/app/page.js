@@ -15,12 +15,12 @@ const Home = () => {
     const [ secondSection, setSecondSection ] = useState({
         one: [], two: [], three: {}, four: {},
     });
+    const [ thirdSection, setThirdSection ] = useState();
     
     const fetchUserDeals = async () => {
         const res = await fetch('/api/used-items/all-items');
         const data = await res.json();
 
-        console.log(data);
         setUserDeals(data.products);
     };
 
@@ -56,10 +56,7 @@ const Home = () => {
             const firstSectionCardThree = userDeals.filter((deal) => deal.category === 'Audio & Video');
             
             let j = Math.floor(Math.random() * firstSectionCardThree.length);
-            console.log('j',j);
             
-            console.log('firstSectionCardThree[j]', firstSectionCardThree[j]);
-
             setFirstSection(prev => ({ ...prev, three: firstSectionCardThree[j] }));
 
 // ----------------------------------------------------------------------------------------------
@@ -67,9 +64,6 @@ const Home = () => {
             const firstSectionCardFour = userDeals.filter((deal) => deal.category === 'Gaming');
             
             let k = Math.floor(Math.random() * firstSectionCardFour.length);
-            console.log('k',k);
-            
-            console.log('firstSectionCardFour[k]', firstSectionCardFour[k]);
 
             setFirstSection(prev => ({ ...prev, four: firstSectionCardFour[k] }));
 
@@ -108,10 +102,7 @@ const Home = () => {
             const secondSectionCardThree = userDeals.filter((deal) => deal.category === 'Peripherals');
             
             let n = Math.floor(Math.random() * secondSectionCardThree.length);
-            console.log('n',n);
             
-            console.log('secondSectionCardThree[n]', secondSectionCardThree[n]);
-
             setSecondSection(prev => ({ ...prev, three: secondSectionCardThree[n] }));
 
 // ----------------------------------------------------------------------------------------------
@@ -119,12 +110,17 @@ const Home = () => {
             const secondSectionCardFour = userDeals.filter((deal) => deal.category === 'Components');
                         
             let o = Math.floor(Math.random() * secondSectionCardFour.length);
-            console.log('o',o);
-
-            console.log('secondSectionCardFour[o]', secondSectionCardFour[o]);
 
             setSecondSection(prev => ({ ...prev, four: secondSectionCardFour[o] }));
 
+// ----------------------------------------------------------------------------------------------
+
+            const preThirdSection = userDeals.filter((deal) => deal.category === 'Gaming');
+
+            const thirdSectionData = preThirdSection.slice(0, 6);
+            console.log(thirdSectionData);
+
+            setThirdSection(thirdSectionData);
 
         }
     }, [ userDeals ]);
@@ -229,6 +225,19 @@ const Home = () => {
                         </div>
                     </div> : <div>... loading</div>
                 }
+            </section>
+            <section className={styles.thirdSection}>
+
+                <h2>For our Gamers</h2>
+
+                <div>
+                    {
+                        thirdSection && thirdSection.map(deal => (
+                            <img key={deal._id} src={deal?.main_picture?.url}/>
+                        ))
+                    }
+                </div>
+
             </section>
         </main>
     );

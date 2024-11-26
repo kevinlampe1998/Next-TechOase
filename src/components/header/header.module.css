@@ -43,3 +43,12 @@
     background: var(--secondary-color);
 
   }
+
+  @media (min-width: 619px) {
+    .navLayout {
+      transform: translateY(50px);
+    }
+    .projectName {
+      transform: translateY(20px);
+    }
+}

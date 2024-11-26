@@ -17,7 +17,7 @@ const Header = () => {
                 <nav className={styles.navLayout}>
                     <Link href="/">Home</Link>
                     <Link href="/pages/new-in-store">New in Store</Link>
-                    <Link href="/pages/used-items">Used Items</Link>
+                    <Link href="/pages/used-items">User Deals</Link>
                     <Link href="/pages/cart">Cart</Link>
                     <Link href="/pages/user-profile">
                         {localDataBank.user?.firstName}

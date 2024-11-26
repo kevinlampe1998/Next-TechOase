@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-import User from "../User";
-import Computers from "./Computer";
+import User from "./User";
+import Computers from "./new-in-store/Computer";
 
 const cartSchema = new mongoose.Schema(
     {
@@ -17,10 +17,11 @@ const cartSchema = new mongoose.Schema(
                     type: String,
                     enum: [
                         "Computer",
-                        "Electronics",
-                        "Clothing",
-                        "Books",
-                        "Other",
+                        "Mobile",
+                        "Raspberry",
+                        "Drones",
+                        "ThreeDPrinter",
+                        "UsedItem",
                     ],
                 },
             },

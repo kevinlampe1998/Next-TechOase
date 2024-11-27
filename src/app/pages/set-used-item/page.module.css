@@ -37,6 +37,10 @@
     font-size: 14px;
 }
 
+.setProduct textarea {
+    max-width: 600px;
+}
+
 .formGroup textarea {
     min-height: 100px;
     resize: vertical;
@@ -53,6 +57,7 @@
     font-size: 16px;
     margin-top: 10px;
     border-radius: 20px;
+    max-width: 600px;
 }
 
 .submitButton:hover {

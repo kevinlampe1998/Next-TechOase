@@ -8,26 +8,8 @@ import { TheContext } from "@/components/context-provider/component";
 
 const Products = () => {
     const router = useRouter();
-
-    // const [id, setId] = useState(null);
-
-    // useEffect(() => {
-    //     const getId = async () => {
-    //         const resolvedParams = await params;
-    //         setId(resolvedParams.id);
-    //     };
-
-    //     getId();
-    // }, [params]);
-
-    // useEffect(() => {
-    //     id && fetchProducts();
-    // }, [id]);
-
-    // const { _id } = useParams();
     const [products, setProducts] = useState([]);
     const { localDataBank, dispatch } = useContext(TheContext);
-    // const navi = useNavigate();
 
     const fetchProducts = async () => {
         const res = await fetch(`/api/new-in-store`);

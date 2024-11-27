@@ -1,12 +1,20 @@
 "use client";
 
 import styles from "./header.module.css";
-import { useState, useContext, useRef, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import Link from "next/link";
 import { TheContext } from "../context-provider/component";
+import { usePathname } from "next/navigation";
 
 const Header = () => {
     const { localDataBank, dispatch } = useContext(TheContext);
+
+    const pathname = usePathname();
+
+    useEffect(() => {
+ 
+        window.scrollTo(0, 0);
+    }, [pathname]); 
 
     return (
         <header className={styles.header}>

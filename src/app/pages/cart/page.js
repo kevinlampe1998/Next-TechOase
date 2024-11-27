@@ -7,7 +7,8 @@ import { useContext, useEffect, useState } from "react";
 const Cart = () => {
     const { localDataBank, dispatch } = useContext(TheContext);
 
-    const [cart, setCart] = useState();
+    const [ cart, setCart ] = useState();
+    const [ products, setProducts ] = useState();
 
     const fetchCart = async () => {
         const response = await fetch(`/api/cart/get-cart`, {
@@ -21,7 +22,6 @@ const Cart = () => {
             }),
         });
         const data = await response.json();
-        console.log(data);
 
         setCart(data.cart.products);
     };
@@ -29,10 +29,6 @@ const Cart = () => {
     useEffect(() => {
         localDataBank.user && fetchCart();
     }, [localDataBank.user]);
-
-    useEffect(() => {
-        console.log("cart", cart);
-    });
 
     const fetchAllProducts = async () => {
         const fetchedProducts = await Promise.all(
@@ -44,15 +40,71 @@ const Cart = () => {
                 return data;
             })
         );
+        setProducts(fetchedProducts);
+    };
+
+    const removeFromCart = async (productId) => {
+        const res = await fetch('/api/cart/remove-from-cart', {
+            method: 'POST',
+            body: JSON.stringify({
+                productId, userId: localDataBank.user._id
+            }),
+            headers: { 'content-type': 'application/json' }
+        });
+        const data = await res.json();
+        console.log(data);
     };
 
     useEffect(() => {
-        fetchAllProducts();
+        cart && fetchAllProducts();
     }, [cart]);
 
     return (
-        <main>
-            <h1>Cart</h1>
+        <main key={'1234'} className={styles.cart}>
+            <h1 key={'123'}>Cart</h1>
+
+            {
+                products ?
+
+                products.map((product, index) => (
+                    <div key={index} className={styles.cartProduct}>
+                        <img src={product?.main_picture?.url}/>
+                        <div>
+                            <div>
+                                <h3>Manufacturer</h3>
+                                <span>{product.manufacturer}</span>
+                            </div>
+                            <div>
+                                <h3>Model</h3>
+                                <span>{product.model}</span>
+                            </div>
+                            <div>
+                                <h3>Price</h3>
+                                <span>{parseInt(product.price)},00 $</span>
+                            </div>
+                            <div>
+                                <button onClick={() => removeFromCart(product._id)}>Remove from cart</button>
+                            </div>
+                        </div>
+                    </div>
+                ))
+                
+                : <div className={styles.cartLoading}>... loading</div>
+            }
+
+            <h4>
+                {   products &&
+                        `${products.reduce((total, product) => {
+                            const price = parseInt(product.price) || 0;
+                            return total + price;
+                        }, 0)},00 $`
+                }
+            </h4>
+
+            {
+               products && <button>Buy</button>
+            }
+
         </main>
     );
 };

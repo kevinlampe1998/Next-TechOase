@@ -12,17 +12,20 @@ export async function POST(req, res) {
         const cart = await Cart.findOne({ userId });
         if (cart) {
             const product = cart.products.find(
-                (product) => product.productId === productId
+                (product) => String(product.productId) === productId
             );
+
             if (product) {
                 return NextResponse.json({
                     message: "Product already exists in the cart",
+                    alreadyExist: 1
                 });
             }
             cart.products.push({ productId, category });
             await cart.save();
             return NextResponse.json({
                 message: "Product added to the cart",
+                success: 1
             });
         }
         const newCart = new Cart({

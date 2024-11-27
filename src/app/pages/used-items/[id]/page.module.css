@@ -28,6 +28,14 @@
     margin: 20px;
 }
 
+.singleProduct > div > div > h4 {
+    padding: 10px 0;
+}
+
+.singleProduct > div > div > div {
+    padding: 10px 0;
+}
+
 .singleProductComment {
     display: flex;
     flex-direction: column;

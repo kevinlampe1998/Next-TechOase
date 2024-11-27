@@ -63,7 +63,7 @@ const Product = ({ params }) => {
                     Contact Seller
                 </button>
 
-                <div className={styles.productComments}>
+                {/* <div className={styles.productComments}>
                     <h5>Comments and Ratings</h5>
 
                     {[1, 2, 3].map((index) => (
@@ -72,7 +72,7 @@ const Product = ({ params }) => {
                             <span>I like this product</span>
                         </div>
                     ))}
-                </div>
+                </div> */}
             </div>
         </section>
     );

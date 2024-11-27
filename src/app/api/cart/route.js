@@ -42,30 +42,3 @@ export async function POST(req, res) {
         });
     }
 }
-
-export async function GET(req, { params }) {
-    try {
-        const { userId } = params;
-
-        console.log("userId", userId);
-
-        const cart = await Cart.findOne({ userId });
-        if (cart) {
-            return NextResponse.json({
-                message: "Cart fetched successfully",
-                cart,
-            });
-        }
-        return NextResponse.json({
-            message: "Cart not found",
-            error: 1,
-        });
-        0;
-    } catch (error) {
-        console.log("error on Route /api/cart", error);
-        return NextResponse.json({
-            message: "Internal Server Error",
-            error: 1,
-        });
-    }
-}

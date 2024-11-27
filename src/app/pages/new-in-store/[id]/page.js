@@ -10,12 +10,6 @@ const ProductDetails = ({ params }) => {
 
     const [product, setProduct] = useState(null);
 
-    // const [payload, setPayload] = useState({
-    //     userId: localDataBank.user._id,
-    //     productId: id,
-    //     category: "Computer",
-    // });
-
     useEffect(() => {
         const getId = async () => {
             const resolvedParams = await params;

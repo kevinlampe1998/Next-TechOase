@@ -1,11 +1,12 @@
-:root, * {
+:root,
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     overflow-x: hidden;
-    --primary-color: #1A1A1A;
-    --secondary-color: #00CC33;
-    --tertiary-color: #B0B3B8;
+    --primary-color: #1a1a1a;
+    --secondary-color: #00cc33;
+    --tertiary-color: #b0b3b8;
 }
 
 body {
@@ -13,8 +14,9 @@ body {
     font-weight: bold;
 }
 
-header, footer {
-    color: #B0B3B8;
+header,
+footer {
+    color: #b0b3b8;
 }
 
 form {

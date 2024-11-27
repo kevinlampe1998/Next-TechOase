@@ -1,3 +1,14 @@
+@font-face {
+    font-family: "FastDragDemo";
+    src: url("/fonts/FastDragDemoRegular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+.projectName div {
+    font-family: "FastDragDemo", serif;
+}
+
 .header {
     background: linear-gradient(15deg, #0af, #000);
     background: var(--primary-color);
@@ -15,21 +26,21 @@
     width: 100%;
     font-size: 3rem;
     text-align: center;
-  }
-  
-  .projectName div {
+}
+
+.projectName div {
     font-family: serif;
-  }
-  
-  .navLayout {
+}
+
+.navLayout {
     display: flex;
     flex-wrap: wrap;
     padding-left: 10px;
-  }
-  
-  .navLayout a:link,
-  .navLayout a:active,
-  .navLayout a:visited {
+}
+
+.navLayout a:link,
+.navLayout a:active,
+.navLayout a:visited {
     margin: 2px 2px;
     color: white;
     text-decoration: none;
@@ -37,18 +48,17 @@
     padding: 10px 20px;
     border: 2px solid var(--secondary-color);
     border-radius: 10px;
-  }
+}
 
-  .navLayout a:hover {
+.navLayout a:hover {
     background: var(--secondary-color);
+}
 
-  }
-
-  @media (min-width: 619px) {
+@media (min-width: 619px) {
     .navLayout {
-      transform: translateY(50px);
+        transform: translateY(50px);
     }
     .projectName {
-      transform: translateY(20px);
+        transform: translateY(20px);
     }
 }

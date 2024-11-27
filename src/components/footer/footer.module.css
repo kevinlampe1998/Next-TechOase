@@ -2,8 +2,9 @@
     display: flex;
     flex-direction: column;
     background: var(--primary-color);
-    height: 600px;
+    min-height: 600px;
     margin-top: 300px;
+    color: #fff;
   }
 
   .footer a:hover,
@@ -12,10 +13,30 @@
   .footer a:visited {
     color: #fff;
     text-decoration: none;
-    padding: 20px;
+    padding: 10px;
+    font-size: 0.7rem;
+  }
+
+  .footer section {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+  }
+
+  .footer section h3 {
+    padding-bottom: 30px;
+    font-size: 0.8rem;
   }
 
   .shoppingCartLogo {
     width: 25px;
+  }
+
+  @media (min-width: 900px) {
+    .footer div {
+      display: flex;
+      justify-content: space-around;
+      padding-top: 40px;
+    }
   }
   

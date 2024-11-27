@@ -50,6 +50,10 @@
     box-shadow: 5px 5px 20px #333;
 }
 
+.homeFourProducts > div > img:hover {
+    box-shadow: 5px 5px 30px #000;
+}
+
 .homeOneProduct {
     text-align: center;
     /* width: 400px;
@@ -70,6 +74,10 @@
     width: 350px;
     border-radius: 20px;
     box-shadow: 5px 5px 20px #333;
+}
+
+.homeOneProduct > div > img:hover {
+    box-shadow: 5px 5px 20px #000;
 }
 
 .thirdSection {
@@ -95,6 +103,10 @@
     border-radius: 50%;
     box-shadow: 5px 5px 20px #333;
     margin: 30px;
+}
+
+.thirdSection img:hover {
+    box-shadow: 5px 5px 30px #000;
 }
 
 .slideShow > div > div {

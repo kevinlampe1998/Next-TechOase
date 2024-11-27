@@ -53,6 +53,9 @@ const Cart = () => {
         });
         const data = await res.json();
         console.log(data);
+
+        window.location.reload();
+
     };
 
     useEffect(() => {

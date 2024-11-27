@@ -10,6 +10,7 @@
     background: var(--primary-color);
     color: #fff;
     font-weight: bold;
+    width: 300px;
 }
 
 .profile button:first-child {

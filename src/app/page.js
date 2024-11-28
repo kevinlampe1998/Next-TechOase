@@ -2,7 +2,7 @@
 
 import LandingPage from "./pages/landing-page/page";
 // import ThreeDExample from "@/components/three-d/component";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import styles from './page.module.css';
 import { useRouter } from "next/navigation";
 
@@ -16,6 +16,12 @@ const Home = () => {
         one: [], two: [], three: {}, four: {},
     });
     const [ thirdSection, setThirdSection ] = useState();
+    const [ computers, setComputers ] = useState();
+    const [ slideShow, setSlideShow ] = useState('0%');
+    const slidePics = useRef();
+    const slideLeftButton = useRef();
+    const slideRightButton = useRef();
+
     
     const fetchUserDeals = async () => {
         const res = await fetch('/api/used-items/all-items');
@@ -118,17 +124,70 @@ const Home = () => {
             const preThirdSection = userDeals.filter((deal) => deal.category === 'Gaming');
 
             const thirdSectionData = preThirdSection.slice(0, 6);
-            console.log(thirdSectionData);
 
             setThirdSection(thirdSectionData);
 
         }
     }, [ userDeals ]);
 
+    const fetchComputers = async () => {
+        const res = await fetch('/api/home/computer-samples');
+        const data = await res.json();
+        console.log(data);
+        setComputers(data.computers);
+    };
+
+    useEffect(() => {
+        fetchComputers();
+    }, []);
+
+    const slideToRight = () => {
+        const newSlideValue = `${Number(slideShow.split('').slice(0, slideShow.length - 1).join('')) - 100}%`;
+        console.log('newSlideValue', newSlideValue);
+
+        slidePics.current.style.left = newSlideValue;
+
+        setSlideShow(newSlideValue);
+    };
+
+    const slideToLeft = () => {
+        const newSlideValue = `${Number(slideShow.split('').slice(0, slideShow.length - 1).join('')) + 100}%`;
+        console.log('newSlideValue', newSlideValue);
+
+        slidePics.current.style.left = newSlideValue;
+
+        setSlideShow(newSlideValue);
+    };
+
+    useEffect(() => {
+        slideShow === '0%' && (slideLeftButton.current.style.display = 'none');
+        slideShow !== '0%' && (slideLeftButton.current.style.display = 'block');
+
+        slideShow === '-900%' && (slideRightButton.current.style.display = 'none');
+        slideShow !== '-900%' && (slideRightButton.current.style.display = 'block');
+    }, [slideShow]);
+
     return (
         <main className={styles.home}>
             <LandingPage/>
             {/* <ThreeDExample/> */}
+            <section className={styles.slideShow}>
+                <div>
+                    <div ref={slidePics}>
+                    {
+                        computers ?
+                        
+                        computers.map(computer => (
+                            <img src={computer?.main_picture?.url} key={computer._id}/>
+                        ))
+
+                        : <div>... loading</div>
+                    }
+                    </div>
+                    <button onClick={slideToLeft} ref={slideLeftButton} className={styles.slideLeftButton}>{'Prev'}</button>
+                    <button onClick={slideToRight} ref={slideRightButton} className={styles.slideRightButton}>{'Next'}</button>
+                </div>
+            </section>
             <section className={styles.homeSectionSpace50}></section>
             <section className={styles.homeFirstSection}>
                 {

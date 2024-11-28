@@ -6,7 +6,7 @@ import Image from "@/models/Image";
 export const GET = async (req, { params }) => {
     try {
         connectMongo();
-        const { id } = params;
+        const { id } = await params;
         const foundComputer = await Computer.findOne({ _id: id });
 
         const computer = await Computer.populate(foundComputer, {

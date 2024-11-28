@@ -184,53 +184,37 @@ const Home = () => {
         fetchComputers();
     }, []);
 
-    const slideToRight = () => {
-        const newSlideValue = `${
-            Number(
-                slideShow
-                    .split("")
-                    .slice(0, slideShow.length - 1)
-                    .join("")
-            ) - 100
-        }%`;
-        console.log("newSlideValue", newSlideValue);
+    // const slideToRight = () => {
+    //     const newSlideValue = `${Number(slideShow.split('').slice(0, slideShow.length - 1).join('')) - 100}%`;
+    //     console.log('newSlideValue', newSlideValue);
 
-        slidePics.current.style.left = newSlideValue;
+    //     slidePics.current.style.left = newSlideValue;
 
-        setSlideShow(newSlideValue);
-    };
+    //     setSlideShow(newSlideValue);
+    // };
 
-    const slideToLeft = () => {
-        const newSlideValue = `${
-            Number(
-                slideShow
-                    .split("")
-                    .slice(0, slideShow.length - 1)
-                    .join("")
-            ) + 100
-        }%`;
-        console.log("newSlideValue", newSlideValue);
+    // const slideToLeft = () => {
+    //     const newSlideValue = `${Number(slideShow.split('').slice(0, slideShow.length - 1).join('')) + 100}%`;
+    //     console.log('newSlideValue', newSlideValue);
 
-        slidePics.current.style.left = newSlideValue;
+    //     slidePics.current.style.left = newSlideValue;
 
-        setSlideShow(newSlideValue);
-    };
+    //     setSlideShow(newSlideValue);
+    // };
 
-    useEffect(() => {
-        slideShow === "0%" && (slideLeftButton.current.style.display = "none");
-        slideShow !== "0%" && (slideLeftButton.current.style.display = "block");
+    // useEffect(() => {
+    //     slideShow === '0%' && (slideLeftButton.current.style.display = 'none');
+    //     slideShow !== '0%' && (slideLeftButton.current.style.display = 'block');
 
-        slideShow === "-900%" &&
-            (slideRightButton.current.style.display = "none");
-        slideShow !== "-900%" &&
-            (slideRightButton.current.style.display = "block");
-    }, [slideShow]);
+    //     slideShow === '-900%' && (slideRightButton.current.style.display = 'none');
+    //     slideShow !== '-900%' && (slideRightButton.current.style.display = 'block');
+    // }, [slideShow]);
 
     return (
         <main className={styles.home}>
             <LandingPage />
             {/* <ThreeDExample/> */}
-            <section className={styles.slideShow}>
+            {/* <section className={styles.slideShow}>
                 <div>
                     <div ref={slidePics}>
                         {computers ? (
@@ -382,7 +366,12 @@ const Home = () => {
                             <img key={deal._id} src={deal?.main_picture?.url} />
                         ))}
                 </div>
+<<<<<<< HEAD
             </section>
+=======
+
+            </section> */}
+            >>>>>>> 7b8f0e805cf42d37d626b6686efbd9d93ca1201f
         </main>
     );
 };

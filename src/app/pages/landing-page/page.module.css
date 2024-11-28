@@ -19,9 +19,9 @@
 }
 
 .container h1 {
-    font-family: "Russo One", sans-serif;
+    /* font-family: "Russo One", sans-serif; */
     font-size: 3rem;
-    color: #75dd14;
+    color: #fff;
     position: absolute;
     left: 50%;
     top: 20%;

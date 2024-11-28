@@ -1,13 +1,4 @@
-@font-face {
-    font-family: "FastDragDemo";
-    src: url("/fonts/FastDragDemoRegular.ttf") format("truetype");
-    font-weight: normal;
-    font-style: normal;
-}
-
-.projectName div {
-    font-family: "FastDragDemo", serif;
-}
+@import url("https://fonts.googleapis.com/css2?family=Iceberg&family=Rubik+Iso&family=Russo+One&display=swap");
 
 .header {
     background: linear-gradient(15deg, #0af, #000);
@@ -20,16 +11,16 @@
     width: 100%;
 }
 
+.projectName div {
+    font-family: "Rubik Iso Static", Iceberg, "Russo One", sans-serif;
+}
+
 .projectName {
     color: var(--secondary-color);
     padding: 5px;
     width: 100%;
-    font-size: 3rem;
+    font-size: 4rem;
     text-align: center;
-}
-
-.projectName div {
-    font-family: serif;
 }
 
 .navLayout {

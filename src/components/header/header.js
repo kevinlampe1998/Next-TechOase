@@ -1,5 +1,10 @@
 "use client";
 
+<style>
+    @import
+    url(https://fonts.googleapis.com/css2?family=Rubik+Iso&display=swap);
+</style>;
+
 import styles from "./header.module.css";
 import { useState, useContext, useRef, useEffect } from "react";
 import Link from "next/link";

@@ -53,3 +53,7 @@ button {
 h2 {
     padding: 10px;
 }
+
+nextjs-portal {
+    display: none;
+}

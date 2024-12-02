@@ -46,6 +46,8 @@ const ProductDetails = ({ params }) => {
         data.error && (cartMessage.current.style.color = 'red');
         
         console.log("addToCart data", data);
+
+        dispatch({ type: 'renew-cart-logo' });
     };
 
     useEffect(() => {

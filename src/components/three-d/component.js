@@ -19,7 +19,8 @@ const Model = (props) => {
         modelRef.current && (modelRef.current.rotation.y += 0.005);
     });
 
-    const { scene } = useGLTF("/models/scene.gltf");
+    const { scene } = useGLTF("/models/macbook/Macbook Pro.glb");
+    // const { scene } = useGLTF("/models/three-d-printer/scene.gltf");
     return <primitive ref={modelRef} object={scene} {...props} />;
 };
 

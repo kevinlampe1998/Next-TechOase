@@ -5,6 +5,7 @@ import styles from './page.module.css';
 import { useContext } from 'react';
 import { TheContext } from '@/components/context-provider/component';
 import { useRouter } from 'next/navigation';
+// import ThreeDExample from '@/components/three-d/component';
 
 const Profile = () => {
     const { localDataBank, dispatch } = useContext(TheContext);
@@ -36,6 +37,7 @@ const Profile = () => {
                 <button onClick={navigateToSeeMyProducts}>See my Products</button>
                 <button>Settings</button>
                 <button>My Profile Data</button>
+                {/* <ThreeDExample/> */}
         </section>
     );
 };

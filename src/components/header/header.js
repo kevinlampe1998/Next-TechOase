@@ -120,7 +120,7 @@ const Header = () => {
             <h1 className={styles.projectName}>
                 <div>Tech Oase</div>
             </h1>
-            {localDataBank.user && (
+            {localDataBank.user ? 
                 <section>
                     <nav className={styles.navLayout2}>
                         <Link className={styles.cartLogo} href="/pages/cart">
@@ -139,7 +139,26 @@ const Header = () => {
                         <Link href="/pages/used-items">User Deals</Link>
                     </nav>
                 </section>
-            )}
+
+                : localDataBank.admin ?
+
+                <section>
+                <nav className={styles.navLayout2}>
+
+                    <Link className={styles.profileLogo} href="/pages/user-profile">
+                        {/* {localDataBank.user?.firstName} */}
+                        <User size={22} />
+                    </Link>
+                </nav>
+                <nav className={styles.navLayout}>
+                    <Link href="/pages/new-in-store">New in Store</Link>
+                    <Link href="/pages/admin/set-product">Set in New in Store</Link>
+                    
+                </nav>
+            </section>
+
+                : <section></section>
+            }
         </header>
     );
 };

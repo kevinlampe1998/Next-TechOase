@@ -12,13 +12,24 @@ const LandingPage = () => {
     const router = useRouter();
 
     const toggleHoverClass = (side) => {
+        // if (side === "left") {
+        //     container.current.classList.add(styles["hover-left"]);
+        //     // container.current.classList.remove(styles["hover-right"]);
+        // } else if (side === 'right') {
+        //     container.current.classList.add(styles["hover-right"]);
+        //     // container.current.classList.remove(styles["hover-left"]);
+        // } else {
+        //     container.current.classList.remove(styles["hover-left"]);
+        //     container.current.classList.remove(styles["hover-right"]);
+        // }
         if (side === "left") {
             container.current.classList.add(styles["hover-left"]);
             container.current.classList.remove(styles["hover-right"]);
-        } else if (side === 'right') {
+        } else if (side === "right") {
             container.current.classList.add(styles["hover-right"]);
             container.current.classList.remove(styles["hover-left"]);
         } else {
+            // Wenn Maus den Container verlässt, alle Hover-Klassen entfernen
             container.current.classList.remove(styles["hover-left"]);
             container.current.classList.remove(styles["hover-right"]);
         }
@@ -30,7 +41,9 @@ const LandingPage = () => {
 
     return (
         <>
-            <div ref={container} className={styles.container}>
+            <div ref={container} className={styles.container}
+                onMouseLeave={() => toggleHoverClass()}
+            >
                 <div
                     ref={left}
                     // onMouseLeave={() => toggleHoverClass("right")}
@@ -40,8 +53,9 @@ const LandingPage = () => {
                     <h1>
                         TechOase
                         <br />
-                        here your New Products
+                        Here your New Products
                     </h1>
+                    
                     <a
                         onClick={async (e) => (e.preventDefault(), router.push("/pages/new-in-store"))}
                         className={styles.btn}
@@ -58,7 +72,7 @@ const LandingPage = () => {
                     <h1>
                         Used Items
                         <br />
-                        your Market Place
+                        Your Market Place
                     </h1>
                     <a
                         onClick={async (e) => (e.preventDefault(), router.push("/pages/used-items"))}

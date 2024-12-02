@@ -1,5 +1,6 @@
 'use client'
 import { useReducer, createContext, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 const initialState = {
     user: undefined,
@@ -35,6 +36,7 @@ export const TheContext = createContext();
 
 const ContextProvider = ({ children }) => {
     const [localDataBank, dispatch] = useReducer( reducer, initialState );
+    const router = useRouter();
 
     const loginAtStart = async () => {
       try {
@@ -44,6 +46,10 @@ const ContextProvider = ({ children }) => {
         });
     
         const data = await res.json();
+
+        if (data.admin) {
+          dispatch({ type: 'admin-login', payload: data.admin });
+        }
     
         dispatch({ type: 'users-login', payload: data.searchedUser });
   

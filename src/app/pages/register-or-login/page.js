@@ -78,11 +78,9 @@ const RegisterOrLogin = () => {
         });
 
         const data = await res.json();
-        console.log(data);
+        console.log('postLogin data', data);
 
-        if (data.admin) {
-            alert("Admin logged in!");
-
+        if (data.isAdmin) {
             dispatch({ type: "admin-login", payload: data.admin });
 
             router.push("/pages/admin");

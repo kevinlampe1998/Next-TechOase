@@ -25,11 +25,37 @@ export const POST = async (req, res) => {
         const admin = await Admin.findOne({ email });
         console.log("admin", admin);
         if (admin && password === admin.password) {
-            return NextResponse.json({
-                message: "Admin logged in!",
-                admin,
-                isAdmin: true,
+            // return NextResponse.json({
+            //     message: "Admin logged in!",
+            //     admin,
+            //     isAdmin: true,
+            // });
+
+            const token = jwt.sign(
+                { admin },
+                process.env.JWT_SECRET,
+                { expiresIn: "12h" }
+            );
+    
+            const cookie = serialize("token", token, {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === "production",
+                maxAge: 60 * 60 * 12,
+                path: "/",
+                sameSite: "Strict",
             });
+    
+            const response = new NextResponse(
+                JSON.stringify({
+                    message: "You are successfully logged in!",
+                    success: 1,
+                    admin,
+                    isAdmin: true,
+                })
+            );
+            response.headers.set("Set-Cookie", cookie);
+    
+            return response;
         }
 
         const searchedUser = await User.findOne({ email });

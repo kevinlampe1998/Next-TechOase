@@ -1,19 +1,29 @@
 'use client';
 
-import { useContext } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { TheContext } from "../context-provider/component";
 import Link from "next/link";
 import styles from './footer.module.css';
+import { usePathname } from "next/navigation";
+
 
 const Footer = () => {
     const { localDataBank, dispatch } = useContext(TheContext);
+    const pathName = usePathname();
+    const footer = useRef();
 
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
+    useEffect(() => {
+        console.log(pathName);
+        pathName === '/' ? (footer.current.style.marginTop = '0px')
+            : (footer.current.style.marginTop = '300px')
+    });
+
     return (
-        <footer className={styles.footer}>
+        <footer className={styles.footer} ref={footer}>
                 {
                     localDataBank.user &&
                         <div>
@@ -25,7 +35,7 @@ const Footer = () => {
                                 <Link href="/pages/team-project" onClick={scrollToTop}>Team</Link>
                                 <Link href="/pages/faq" onClick={scrollToTop}>FAQ</Link>
                             </section>
-                            <section>
+                            {/* <section>
                                 <h3>Buy</h3>
                                 <a href="#">Registration</a>
                                 <a href="#">Bidding & buying help</a>
@@ -82,7 +92,7 @@ const Footer = () => {
                                 <a href="#">Announcements</a>
                                 <a href="#">TechOase Community</a>
                                 <a href="#">TechOase for Business Podcast</a>
-                            </section>
+                            </section> */}
                         </div>
                 }
         </footer>   

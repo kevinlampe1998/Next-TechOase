@@ -3,7 +3,9 @@ import { useReducer, createContext, useEffect } from "react";
 
 const initialState = {
     user: undefined,
-    admin: undefined
+    admin: undefined,
+    cart: undefined,
+    renewCartLogo: true
   };
 
 export const reducer = (state, action) => {
@@ -16,6 +18,14 @@ export const reducer = (state, action) => {
       }
       if (action.type === 'admin-login') {
         return { ...state, admin: action.payload };
+      }
+
+      if (action.type === 'set-cart') {
+        return { ...state, cart: action.payload };
+      }
+
+      if (action.type === 'renew-cart-logo') {
+        return { ...state, renewCartLogo: !state.renewCartLogo };
       }
     
       return state;

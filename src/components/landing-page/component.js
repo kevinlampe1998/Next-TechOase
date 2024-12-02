@@ -2,7 +2,7 @@
 
 import Head from "next/head";
 import styles from "./page.module.css";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 const LandingPage = () => {
@@ -21,12 +21,16 @@ const LandingPage = () => {
         }
     };
 
+    useEffect(() => {
+        console.log('container', container.current.classList);
+    });
+
     return (
         <>
             <div ref={container} className={styles.container}>
                 <div
                     ref={left}
-                    onMouseLeave={() => toggleHoverClass("left")}
+                    onMouseLeave={() => toggleHoverClass("right")}
                     onMouseEnter={() => toggleHoverClass("left")}
                     className={`${styles.split} ${styles.left}`}
                 >
@@ -36,7 +40,7 @@ const LandingPage = () => {
                         here your New Products
                     </h1>
                     <a
-                        onClick={() => router.push("/pages/new-in-store")}
+                        onClick={async (e) => (e.preventDefault(), router.push("/pages/new-in-store"))}
                         className={styles.btn}
                     >
                         Join
@@ -44,7 +48,7 @@ const LandingPage = () => {
                 </div>
                 <div
                     ref={right}
-                    onMouseLeave={() => toggleHoverClass("right")}
+                    onMouseLeave={() => toggleHoverClass("left")}
                     onMouseEnter={() => toggleHoverClass("right")}
                     className={`${styles.split} ${styles.right}`}
                 >
@@ -54,7 +58,7 @@ const LandingPage = () => {
                         your Market Place
                     </h1>
                     <a
-                        onClick={() => router.push("/pages/used-items")}
+                        onClick={async (e) => (e.preventDefault(), router.push("/pages/used-items"))}
                         className={styles.btn}
                     >
                         Join

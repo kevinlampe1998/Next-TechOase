@@ -1,3 +1,9 @@
 .headerSpace {
-    height: 190px;
+    height: 150px;
+}
+
+@media (max-width: 1200px) {
+    .headerSpace {
+        height: 200px;
+    }
 }

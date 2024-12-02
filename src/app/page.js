@@ -1,7 +1,8 @@
 "use client";
 
-import LandingPage from "./pages/landing-page/page";
+import LandingPage from "../components/landing-page/component";
 // import ThreeDExample from "@/components/three-d/component";
+<<<<<<< HEAD
 import { useState, useEffect, useRef } from "react";
 import styles from "./page.module.css";
 import { useRouter } from "next/navigation";
@@ -31,14 +32,41 @@ const Home = () => {
     const fetchUserDeals = async () => {
         const res = await fetch("/api/used-items/all-items");
         const data = await res.json();
+=======
+// import { useState, useEffect, useRef } from "react";
+import styles from './page.module.css';
+// import { useRouter } from "next/navigation";
 
-        setUserDeals(data.products);
-    };
+const Home = () => {
+    // const router = useRouter();
+    // const [ userDeals, setUserDeals ] = useState();
+    // const [ firstSection, setFirstSection ] = useState({
+    //     one: [], two: [], three: {}, four: {},
+    // });
+    // const [ secondSection, setSecondSection ] = useState({
+    //     one: [], two: [], three: {}, four: {},
+    // });
+    // const [ thirdSection, setThirdSection ] = useState();
+    // const [ computers, setComputers ] = useState();
+    // const [ slideShow, setSlideShow ] = useState('0%');
+    // const slidePics = useRef();
+    // const slideLeftButton = useRef();
+    // const slideRightButton = useRef();
 
-    useEffect(() => {
-        fetchUserDeals();
-    }, []);
+    
+    // const fetchUserDeals = async () => {
+    //     const res = await fetch('/api/used-items/all-items');
+    //     const data = await res.json();
+>>>>>>> d97bd562668a5d336f4b91f82653a461eb8a293c
 
+    //     setUserDeals(data.products);
+    // };
+
+    // useEffect(() => {
+    //     fetchUserDeals();
+    // }, []);
+
+<<<<<<< HEAD
     useEffect(() => {
         if (userDeals) {
             setFirstSection((prev) => ({
@@ -59,9 +87,21 @@ const Home = () => {
             }));
 
             // ----------------------------------------------------------------------------------------------
+=======
+//     useEffect(() => {
+//         if (userDeals) {
 
-            let i = 0;
+//             setFirstSection(prev => ({ ...prev, one: [ ...prev.one, userDeals[1] ] }));
+//             setFirstSection(prev => ({ ...prev, one: [ ...prev.one, userDeals[2] ] }));
+//             setFirstSection(prev => ({ ...prev, one: [ ...prev.one, userDeals[3] ] }));
+//             setFirstSection(prev => ({ ...prev, one: [ ...prev.one, userDeals[4] ] }));
 
+// // ----------------------------------------------------------------------------------------------
+>>>>>>> d97bd562668a5d336f4b91f82653a461eb8a293c
+
+//             let i = 0;
+
+<<<<<<< HEAD
             const firstSectionCardTwo = userDeals.filter((deal) => {
                 if (i < 4 && deal.category === "Smart Home") {
                     i++;
@@ -100,9 +140,40 @@ const Home = () => {
             }));
 
             // ----------------------------------------------------------------------------------------------
+=======
+//             const firstSectionCardTwo = userDeals.filter((deal) => {
+//                 if ((i < 4) && deal.category === 'Smart Home') {
+//                     i++;
+//                     return true;
+//                 } else {
+//                     return false;
+//                 }
+//             });
 
-            let l = 0;
+//             setFirstSection(prev => ({ ...prev, two: firstSectionCardTwo }));
 
+// // ----------------------------------------------------------------------------------------------
+
+//             const firstSectionCardThree = userDeals.filter((deal) => deal.category === 'Audio & Video');
+            
+//             let j = Math.floor(Math.random() * firstSectionCardThree.length);
+            
+//             setFirstSection(prev => ({ ...prev, three: firstSectionCardThree[j] }));
+
+// // ----------------------------------------------------------------------------------------------
+
+//             const firstSectionCardFour = userDeals.filter((deal) => deal.category === 'Gaming');
+            
+//             let k = Math.floor(Math.random() * firstSectionCardFour.length);
+
+//             setFirstSection(prev => ({ ...prev, four: firstSectionCardFour[k] }));
+
+// // ----------------------------------------------------------------------------------------------
+>>>>>>> d97bd562668a5d336f4b91f82653a461eb8a293c
+
+//             let l = 0;
+
+<<<<<<< HEAD
             const secondSectionCardOne = userDeals.filter((deal) => {
                 if (l < 4 && deal.category === "Mobile Devices") {
                     l++;
@@ -118,9 +189,24 @@ const Home = () => {
             }));
 
             // ----------------------------------------------------------------------------------------------
+=======
+//             const secondSectionCardOne = userDeals.filter((deal) => {
+//                 if ((l < 4) && deal.category === 'Mobile Devices') {
+//                     l++;
+//                     return true;
+//                 } else {
+//                     return false;
+//                 }
+//             });
 
-            let m = 0;
+//             setSecondSection(prev => ({ ...prev, one: secondSectionCardOne }));
 
+// // ----------------------------------------------------------------------------------------------
+>>>>>>> d97bd562668a5d336f4b91f82653a461eb8a293c
+
+//             let m = 0;
+
+<<<<<<< HEAD
             const secondSectionCardTwo = userDeals.filter((deal) => {
                 if (m < 4 && deal.category === "Networking") {
                     m++;
@@ -166,9 +252,42 @@ const Home = () => {
             const preThirdSection = userDeals.filter(
                 (deal) => deal.category === "Gaming"
             );
+=======
+//             const secondSectionCardTwo = userDeals.filter((deal) => {
+//                 if ((m < 4) && deal.category === 'Networking') {
+//                     m++;
+//                     return true;
+//                 } else {
+//                     return false;
+//                 }
+//             });
 
-            const thirdSectionData = preThirdSection.slice(0, 6);
+//             setSecondSection(prev => ({ ...prev, two: secondSectionCardTwo }));
 
+// // ----------------------------------------------------------------------------------------------
+
+//             const secondSectionCardThree = userDeals.filter((deal) => deal.category === 'Peripherals');
+            
+//             let n = Math.floor(Math.random() * secondSectionCardThree.length);
+            
+//             setSecondSection(prev => ({ ...prev, three: secondSectionCardThree[n] }));
+
+// // ----------------------------------------------------------------------------------------------
+
+//             const secondSectionCardFour = userDeals.filter((deal) => deal.category === 'Components');
+                        
+//             let o = Math.floor(Math.random() * secondSectionCardFour.length);
+
+//             setSecondSection(prev => ({ ...prev, four: secondSectionCardFour[o] }));
+
+// // ----------------------------------------------------------------------------------------------
+
+//             const preThirdSection = userDeals.filter((deal) => deal.category === 'Gaming');
+>>>>>>> d97bd562668a5d336f4b91f82653a461eb8a293c
+
+//             const thirdSectionData = preThirdSection.slice(0, 6);
+
+<<<<<<< HEAD
             setThirdSection(thirdSectionData);
         }
     }, [userDeals]);
@@ -179,10 +298,23 @@ const Home = () => {
         console.log(data);
         setComputers(data.computers);
     };
+=======
+//             setThirdSection(thirdSectionData);
 
-    useEffect(() => {
-        fetchComputers();
-    }, []);
+//         }
+//     }, [ userDeals ]);
+
+    // const fetchComputers = async () => {
+    //     const res = await fetch('/api/home/computer-samples');
+    //     const data = await res.json();
+    //     console.log(data);
+    //     setComputers(data.computers);
+    // };
+>>>>>>> d97bd562668a5d336f4b91f82653a461eb8a293c
+
+    // useEffect(() => {
+    //     fetchComputers();
+    // }, []);
 
     // const slideToRight = () => {
     //     const newSlideValue = `${Number(slideShow.split('').slice(0, slideShow.length - 1).join('')) - 100}%`;

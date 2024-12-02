@@ -12,20 +12,24 @@ const Products = () => {
     const { localDataBank, dispatch } = useContext(TheContext);
 
     const fetchProducts = async () => {
-        const res = await fetch(`/api/new-in-store`);
+        const res = await fetch('/api/new-in-store', {
+            method: 'GET'
+        });
         const data = await res.json();
         console.log("fetchProducts data", data);
 
+        if (data.error) {
+            return;
+        }
+
         setProducts(data);
+
+        
     };
 
     useEffect(() => {
         fetchProducts();
     }, []);
-
-    useEffect(() => {
-        console.log("products", products);
-    });
 
     return (
         <div className={styles.NewInStore}>

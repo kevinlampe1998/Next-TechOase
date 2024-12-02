@@ -4,11 +4,12 @@
     background: linear-gradient(15deg, #0af, #000);
     background: var(--primary-color);
     /* border-bottom: 5px solid #0af; */
-    height: 190px;
+    height: 150px;
     position: fixed;
     top: 0;
     z-index: 100;
     width: 100%;
+    overflow: hidden;
 }
 
 .projectName div {
@@ -23,15 +24,53 @@
     text-align: center;
 }
 
+.navLayout2 {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 10px;
+    position: fixed;
+    transform: translateY(-80px);
+    justify-content: flex-end;
+    width: 100%;
+    padding-right: 10px;
+
+}
+
+.navLayout2 > a:link,
+.navLayout2 > a:active,
+.navLayout2 > a:visited {
+    margin: 2px 2px;
+    color: white;
+    text-decoration: none;
+    background: #000;
+    padding: 10px 20px;
+    border: 2px solid var(--secondary-color);
+    border-radius: 10px;
+    display: flex;
+}
+
+.navLayout2 a:hover {
+    background: var(--secondary-color);
+}
+
 .navLayout {
     display: flex;
     flex-wrap: wrap;
     padding-left: 10px;
+    position: relative;
+    /* transform: translateY(-50px); */
 }
 
-.navLayout a:link,
-.navLayout a:active,
-.navLayout a:visited {
+.navLayout a {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navLayout > a:link,
+.navLayout > a:active,
+.navLayout > a:visited {
     margin: 2px 2px;
     color: white;
     text-decoration: none;
@@ -45,11 +84,58 @@
     background: var(--secondary-color);
 }
 
-@media (min-width: 619px) {
+.profileLogo {
+    /* position: fixed;
+    right: 10px;
+    top: 10px; */
+}
+
+.cartLogo {
+    /* right: 80px; */
+    /* min-width: 10px; */
+    /* top: 10px; */
+}
+
+.cartLogo p {
+    padding-left: 10px;
+}
+
+/* @media (min-width: 619px) {
     .navLayout {
         transform: translateY(50px);
     }
     .projectName {
         transform: translateY(20px);
     }
+} */
+
+@media (max-width: 1200px) {
+    .header {
+        height: 200px;
+    }
+    .navLayout {
+        /* transform: translateY(50px); */
+        position: fixed;
+    }
+    .navLayout {
+        /* padding-top: 50px; */
+        transform: translateY(50px);
+
+    }
+    .navLayout2 {
+        transform: translateY(0px);
+
+    }
+    /* .profileLogo {
+        position: fixed;
+        right: 10px;
+        top: -60px;
+    }
+    
+    .cartLogo {
+        position: relative;
+        right: 80px;
+        min-width: 10px;
+        top: -10px;
+    } */
 }

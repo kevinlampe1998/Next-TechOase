@@ -3,7 +3,6 @@
     flex-direction: column;
     background: var(--primary-color);
     min-height: 600px;
-    /* margin-top: 300px; */
     color: #fff;
   }
 

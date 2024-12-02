@@ -15,9 +15,12 @@ const LandingPage = () => {
         if (side === "left") {
             container.current.classList.add(styles["hover-left"]);
             container.current.classList.remove(styles["hover-right"]);
-        } else {
+        } else if (side === 'right') {
             container.current.classList.add(styles["hover-right"]);
             container.current.classList.remove(styles["hover-left"]);
+        } else {
+            container.current.classList.remove(styles["hover-left"]);
+            container.current.classList.remove(styles["hover-right"]);
         }
     };
 
@@ -30,7 +33,7 @@ const LandingPage = () => {
             <div ref={container} className={styles.container}>
                 <div
                     ref={left}
-                    onMouseLeave={() => toggleHoverClass("right")}
+                    // onMouseLeave={() => toggleHoverClass("right")}
                     onMouseEnter={() => toggleHoverClass("left")}
                     className={`${styles.split} ${styles.left}`}
                 >
@@ -47,7 +50,7 @@ const LandingPage = () => {
                 </div>
                 <div
                     ref={right}
-                    onMouseLeave={() => toggleHoverClass("left")}
+                    // onMouseLeave={() => toggleHoverClass("left")}
                     onMouseEnter={() => toggleHoverClass("right")}
                     className={`${styles.split} ${styles.right}`}
                 >

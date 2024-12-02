@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { Star } from "lucide-react";
+import styles from './page.module.css';
 
 const Rating = () => {
     const [rating, setRating] = useState(0);
@@ -29,7 +30,8 @@ const Rating = () => {
     };
 
     return (
-        <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
+        <div className={styles.rating}>
+        
             <h2 className="text-xl font-bold mb-4">
                 Wie bewerten Sie unseren Service?
             </h2>

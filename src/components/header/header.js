@@ -151,6 +151,7 @@ const Header = () => {
                     </Link>
                 </nav>
                 <nav className={styles.navLayout}>
+                    <Link href="/pages/admin">Home</Link>
                     <Link href="/pages/new-in-store">New in Store</Link>
                     <Link href="/pages/admin/set-product">Set in New in Store</Link>
                     

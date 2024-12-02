@@ -1,8 +1,18 @@
+.registerOrLogin {
+    min-height: 900px;
+    background-image: url("/shop/faq.png");
+    background-color: #cccccc;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .decideRegisterOrLogin {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 50px;
+
 }
 
 .decideRegisterOrLogin > button,

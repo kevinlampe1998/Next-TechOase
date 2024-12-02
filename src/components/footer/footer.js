@@ -17,11 +17,11 @@ const Footer = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
-    useEffect(() => {
-        console.log(pathName);
-        pathName === '/' ? (footer.current.style.marginTop = '0px')
-            : (footer.current.style.marginTop = '300px')
-    });
+    // useEffect(() => {
+    //     console.log(pathName);
+    //     pathName === '/' ? (footer.current.style.marginTop = '0px')
+    //         : (footer.current.style.marginTop = '300px')
+    // });
 
     return (
         <footer className={styles.footer} ref={footer}>

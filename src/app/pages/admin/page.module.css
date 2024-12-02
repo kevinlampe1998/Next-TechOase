@@ -1,7 +1,12 @@
 .adminHome {
-    min-height: 300px;
+    min-height: 1100px;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
+    background-image: url("/dashboard/admin.webp");
+    background-color: #cccccc;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }

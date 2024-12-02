@@ -18,11 +18,22 @@ export const POST = async (req, res) => {
 
         const verify = jwt.verify(token, process.env.JWT_SECRET);
 
+        console.log('verify', verify);
+
+        if (verify.admin) {
+            return NextResponse.json({
+                login: true,
+                admin: verify.admin,
+            });
+        }
+
         if (!verify) {
             return NextResponse.json({ message: 'Cookie verification unsuccessful!' });
         };
 
         const searchedUser = await User.findOne({ _id: verify.userId });
+
+        console.log('searchedUser', searchedUser);
 
         if (!searchedUser) {
             return NextResponse.json({ message: 'Token: User not found!' });
@@ -34,7 +45,6 @@ export const POST = async (req, res) => {
             login: true,
             searchedUser,
         });
-        return;
     } catch (err) {
         console.log("Error on POST /users/login-at-start", err);
         return NextResponse.json("Something went wrong!");

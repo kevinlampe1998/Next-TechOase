@@ -39,7 +39,8 @@ const LandingPage = () => {
                 >
                     <h1>
                         TechOase
-                        <br />- here your New Products
+                        <br />
+                        here your New Products
                     </h1>
                     <a
                         onClick={async (e) => (e.preventDefault(), router.push("/pages/new-in-store"))}
@@ -56,7 +57,8 @@ const LandingPage = () => {
                 >
                     <h1>
                         Used Items
-                        <br /> - your Market Place
+                        <br />
+                        your Market Place
                     </h1>
                     <a
                         onClick={async (e) => (e.preventDefault(), router.push("/pages/used-items"))}

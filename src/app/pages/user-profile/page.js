@@ -5,11 +5,9 @@ import styles from './page.module.css';
 import { useContext } from 'react';
 import { TheContext } from '@/components/context-provider/component';
 import { useRouter } from 'next/navigation';
-// import ThreeDExample from '@/components/three-d/component';
 
 const Profile = () => {
     const { localDataBank, dispatch } = useContext(TheContext);
-    // const navigate = useNavigate();
     const router = useRouter();
 
     const logout = async () => {

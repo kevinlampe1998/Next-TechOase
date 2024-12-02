@@ -15,7 +15,7 @@ export const reducer = (state, action) => {
       }
     
       if (action.type === 'users-logout') {
-        return { ...state, user: undefined };
+        return { ...state, user: undefined, admin: undefined };
       }
       if (action.type === 'admin-login') {
         return { ...state, admin: action.payload };

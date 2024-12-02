@@ -5,6 +5,7 @@ import { TheContext } from "../context-provider/component";
 import Link from "next/link";
 import styles from './footer.module.css';
 import { usePathname } from "next/navigation";
+import { Star, Mail, Users, TableOfContents } from "lucide-react";
 
 
 const Footer = () => {
@@ -28,11 +29,24 @@ const Footer = () => {
                     localDataBank.user &&
                         <div>
                             <section>
-                                <Link href="/pages/contact" onClick={scrollToTop}>Contact</Link>
-                                <Link href="/pages/rating" onClick={scrollToTop}>Rating</Link>
-                                <Link href="/pages/help-chat" onClick={scrollToTop}>Help-Chat</Link>
-                                <Link href="/pages/team-project" onClick={scrollToTop}>Team</Link>
-                                <Link href="/pages/faq" onClick={scrollToTop}>FAQ</Link>
+                                <Link href="/pages/contact" onClick={scrollToTop}>
+                                    <Mail size={22}/>
+                                </Link>
+                                <Link href="/pages/rating" onClick={scrollToTop}>
+                                    <Star size={22}/>
+                                </Link>
+                                <Link href="/pages/team-project" onClick={scrollToTop}>
+                                    <Users size={22}/>
+                                </Link>
+                                <Link href="/pages/faq" onClick={scrollToTop}>
+                                    <TableOfContents size={22}/>
+                                </Link>
+                            </section>
+                            <section>
+                                <div>Contact</div>
+                                <div>Rating</div>
+                                <div>Team</div>
+                                <div>FAQ</div>
                             </section>
                             <section className={styles.socialMediaLinks}>
 

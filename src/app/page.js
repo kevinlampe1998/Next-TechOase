@@ -371,7 +371,6 @@ const Home = () => {
 =======
 
             </section> */}
-            >>>>>>> 7b8f0e805cf42d37d626b6686efbd9d93ca1201f
         </main>
     );
 };

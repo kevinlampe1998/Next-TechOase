@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
 import React, { useState } from "react";
-import styles from './page.module.css';
+import styles from "./page.module.css";
 
 const Contact = () => {
     const [formData, setFormData] = useState({
@@ -53,7 +53,7 @@ const Contact = () => {
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="message">Nachricht:</label>
+                    <label htmlFor="message">Message:</label>
                     <textarea
                         id="message"
                         name="message"

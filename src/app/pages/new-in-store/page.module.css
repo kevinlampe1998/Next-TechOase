@@ -1,103 +1,68 @@
-.registerOrLogin {
+.NewInStore {
     width: 100%;
     min-height: 100vh;
-    background-image: url("/shop/faq.png");
-    background-color: #cccccc;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
     padding: 40px 20px;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    gap: 2rem;
 }
 
-.content_box {
-    background-color: rgba(255, 255, 255, 0.95);
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    width: 100%;
-    max-width: 500px;
-}
-
-.decideRegisterOrLogin {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
+.NewInStore h1 {
+    text-align: center;
+    font-size: 2rem;
+    color: #333;
     margin-bottom: 2rem;
 }
 
-.decideRegisterOrLogin button {
-    padding: 0.75rem 2rem;
-    border: none;
-    border-radius: 8px;
-    background-color: #4299e1;
-    color: white;
-    font-weight: 600;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-.decideRegisterOrLogin button:hover {
-    background-color: #3182ce;
-}
-
-.register,
-.login {
-    display: none;
-    flex-direction: column;
+.NewInStoreProduct {
     width: 100%;
+    max-width: 800px;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 1rem;
 }
 
-.register h2,
-.login h2 {
-    text-align: center;
-    font-size: 1.8rem;
-    color: #333;
-    margin-bottom: 1rem;
+.NewInStoreProduct img {
+    width: 50%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
 }
 
-.register label,
-.login label {
-    font-weight: 500;
+.NewInStoreProduct h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin: 0;
+}
+
+.NewInStoreProduct p {
+    margin: 0.5rem 0;
     color: #4a5568;
 }
 
-.register input,
-.login input {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    font-size: 1rem;
-    transition: all 0.2s;
-}
-
-.register input:focus,
-.login input:focus {
-    outline: none;
-    border-color: #4299e1;
-    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
-}
-
-.register button,
-.login button {
-    margin-top: 1rem;
-    padding: 0.75rem;
-    border: none;
-    border-radius: 8px;
+.NewInStoreProduct button {
+    padding: 0.75rem 1.5rem;
     background-color: #4299e1;
     color: white;
+    border: none;
+    border-radius: 8px;
     font-weight: 600;
-    font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.2s;
 }
 
-.register button:hover,
-.login button:hover {
+.NewInStoreProduct button:hover {
     background-color: #3182ce;
+}
+
+@media (max-width: 768px) {
+    .NewInStoreProduct img {
+        width: 80%;
+    }
 }

@@ -12,7 +12,7 @@
 }
 
 .teamBG {
-    background-image: url("/shop/h.jpeg");
+    background-image: url("/shop/h.jpg");
     background-color: #cccccc;
     background-position: center;
     background-repeat: no-repeat;
@@ -23,7 +23,8 @@
     left: 0;
     top: 140px;
     z-index: -100;
-    opacity: 0.2;
+    opacity: 0.4;
+    /* background: blue; */
 }
 
 .teamProject ul {

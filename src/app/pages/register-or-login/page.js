@@ -180,7 +180,7 @@ const RegisterOrLogin = () => {
                     <button type="submit">Login</button>
                 </form>
             </div>
-        </div>
+        // </div>
     );
 };
 

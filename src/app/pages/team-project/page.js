@@ -6,12 +6,12 @@ const TeamProject = () => {
     const teamMembers = [
         {
             name: "Philipp",
-            role: "Frontend Developer",
+            role: "Full Stack Developer",
             image: "/images/philipp.jpeg",
         },
         {
             name: "Kevin",
-            role: "Backend Developer",
+            role: "Full Stack Developer",
             image: "/images/kevin.png",
         },
     ];

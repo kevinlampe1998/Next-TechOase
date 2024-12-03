@@ -9,6 +9,13 @@ const ProductDetails = ({ params }) => {
     const [ id, setId ] = useState(null);
     const [ product, setProduct ] = useState(null);
     const cartMessage = useRef();
+    const [ otherPics, setOtherPics ] = useState();
+    const [ slideShow, setSlideShow ] = useState('0%');
+    const slideLeftButton = useRef();
+    const slideRightButton = useRef();
+    const slidePics = useRef();
+    const [ slidePicsValue, setSlidePicsValue ] = useState();
+
 
     useEffect(() => {
         const getId = async () => {
@@ -45,7 +52,6 @@ const ProductDetails = ({ params }) => {
         data.alreadyExist && (cartMessage.current.style.color = 'black');
         data.error && (cartMessage.current.style.color = 'red');
         
-        console.log("addToCart data", data);
 
         dispatch({ type: 'renew-cart-logo' });
     };
@@ -57,7 +63,6 @@ const ProductDetails = ({ params }) => {
 
                 const data = await response.json();
 
-                console.log("fetchProduct data", data);
                 setProduct(data);
             } catch (err) {
                 console.log(`error pages/new-in-store/id: ${err}`);
@@ -67,21 +72,90 @@ const ProductDetails = ({ params }) => {
         fetchProduct();
     }, [id]);
 
+    
+    
+    const fetchOtherPics = async () => {
+        const res = await fetch('/api/admin/get-other-pics', {
+            method: 'POST', headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({ computerId: id })
+        });
+        const data = await res.json();
+
+        console.log('fetchOtherPics data', data);
+        data.success && setOtherPics(data.otherPics);
+
+        console.log();
+
+        // data.success && (slidePics.current.style.width = `${data.otherPics.length - 1}00%`);
+        data.success && setSlidePicsValue(`${data.otherPics.length + 1}00%`);
+    };
+
     useEffect(() => {
-        // console.log(product);
-        product && console.log(Object.keys(product));
-    }, [product]);
+        slidePicsValue && (slidePics.current.style.width = slidePicsValue);
+    }, [slidePicsValue]);
+
+    useEffect(() => {
+        id && fetchOtherPics();
+    }, [id]);
+
+    const slideToRight = () => {
+        const newSlideValue = `${Number(slideShow.split('').slice(0, slideShow.length - 1).join('')) - 100}%`;
+        console.log('newSlideValue', newSlideValue);
+
+        slidePics.current.style.left = newSlideValue;
+
+        setSlideShow(newSlideValue);
+    };
+
+    const slideToLeft = () => {
+        const newSlideValue = `${Number(slideShow.split('').slice(0, slideShow.length - 1).join('')) + 100}%`;
+
+        slidePics.current.style.left = newSlideValue;
+
+        setSlideShow(newSlideValue);
+    };
+
+    useEffect(() => {
+        if (slideLeftButton.current && slideRightButton.current) {
+            slideShow === '0%' && (slideLeftButton.current.style.display = 'none');
+            slideShow !== '0%' && (slideLeftButton.current.style.display = 'block');
+    
+            slideShow === `-${otherPics.length - 1}00%` && (slideRightButton.current.style.display = 'none');
+            slideShow !== `-${otherPics.length - 1}00%` && (slideRightButton.current.style.display = 'block');
+        }
+    }, [slideShow]);
 
     return (
         <div className={styles.productDetail}>
-            <h1>Product Details</h1>
-            <div className={styles.card}>
-                {product ? (
-                    <div>
+                {
+                    (otherPics && product) &&
+
+                    <section className={styles.slideShow}>
                         <h2>
                             {product.manufacturer} - {product.model}
                         </h2>
-                        {product.main_picture && (
+                        <div>
+                            <div ref={slidePics} className={styles.slidePics}>
+                                <img src={product?.main_picture?.url}/>
+                                {otherPics.map(pic => (
+                                    <img src={pic?.url} key={pic._id}/>
+                                ))}
+                            </div>
+                            <button onClick={slideToLeft} ref={slideLeftButton} className={styles.slideLeftButton}>{'Prev'}</button>
+                            <button onClick={slideToRight} ref={slideRightButton} className={styles.slideRightButton}>{'Next'}</button>
+                        </div>
+                    </section>
+
+                }
+            <div className={styles.card}>
+                {product ? (
+                    <div>
+                        {
+                            !otherPics && 
+                                <h2>{product.manufacturer} - {product.model}</h2>
+                        }
+
+                        {!otherPics && product.main_picture && (
                             <img
                                 src={product?.main_picture?.url}
                                 alt={`${product.model}`}
@@ -99,15 +173,7 @@ const ProductDetails = ({ params }) => {
                         <div>
                             <h3>Details</h3>
                         </div>
-                        {/* <ul> */}
-                            {/* {Object.entries(product).map(([key, value]) => (
-                                <li key={key}>
-                                    <strong>{key}:</strong>{" "}
-                                    {JSON.stringify(value)}
-                                </li>
-                            ))} */}
-                                
-                        {/* </ul> */}
+
                         <div>
                             <h3>Processor</h3>
 

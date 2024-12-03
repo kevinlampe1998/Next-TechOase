@@ -1,0 +1,44 @@
+.newInStoreSingleProduct {
+    min-height: 500px;
+}
+
+.newInStoreSingleProduct {
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.newInStoreSingleProduct img {
+    height: 300px;
+    max-width: 600px;
+    object-fit: cover;
+}
+
+.newInStoreSingleProduct section {
+    width: 90%;
+    min-height: 550px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border-radius: 10px;
+    gap: 30px;
+    max-width: 700px;
+    background: #fff;
+    color: #000;
+    margin: 25px 0;
+    box-shadow: 5px 5px 25px 5px var(--primary-color);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+}
+
+.currentOtherPics {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.currentOtherPics img {
+    width: 200px;
+    height: 200px;
+}

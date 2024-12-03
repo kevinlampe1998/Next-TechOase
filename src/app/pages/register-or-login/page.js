@@ -93,6 +93,7 @@ const RegisterOrLogin = () => {
 
     return (
         <div className={styles.registerOrLogin}>
+            <div className={styles.registerOrLoginBG}></div>
             <section
                 className={styles.decideRegisterOrLogin}
                 ref={decideSection}

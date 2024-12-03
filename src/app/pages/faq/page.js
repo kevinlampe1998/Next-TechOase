@@ -48,6 +48,7 @@ const FAQItem = ({ question, answer }) => {
 const FAQPage = () => {
     return (
         <div className={styles.faqPage}>
+            <div className={styles.faqBG}></div>
             <h1>Häufig gestellte Fragen (FAQ)</h1>
             {faqs.map((faq, index) => (
                 <FAQItem

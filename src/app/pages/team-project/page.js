@@ -18,6 +18,7 @@ const TeamProject = () => {
 
     return (
         <div className={styles.teamProject}>
+            <div className={styles.teamBG}></div>
             <h2>The Super Team</h2>
             <ul>
                 {teamMembers.map((member, index) => (

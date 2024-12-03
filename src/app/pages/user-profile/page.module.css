@@ -2,8 +2,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    padding: 50px;
     gap: 10px;
+    min-height: 800px;
 }
 
 .profile button {

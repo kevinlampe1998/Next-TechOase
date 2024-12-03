@@ -1,12 +1,29 @@
 .teamProject {
     max-width: 800px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 50px;
+    height: 900px;
+    text-align: center;
+}
+
+.teamProject h2 {
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+.teamBG {
     background-image: url("/shop/h.jpeg");
     background-color: #cccccc;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 140px;
+    z-index: -100;
+    opacity: 0.2;
 }
 
 .teamProject ul {
@@ -17,7 +34,8 @@
 .teamMember {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
+    gap: 30px;
 }
 
 .teamMemberImage {

@@ -1,12 +1,29 @@
 .faqPage {
-    max-width: 800px;
+    width: 100%;
     margin: 0 auto;
-    padding: 20px;
+    padding: 50px;
+    height: 900px;
+    text-align: center;
+    max-width: 900px;
+}
+
+.faqPage h1 {
+    padding-bottom: 50px;
+}
+
+.faqBG {
     background-image: url("/shop/faq.png");
     background-color: #cccccc;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 140px;
+    left: 0;
+    z-index: -100;
+    opacity: 0.3;
 }
 
 .faqItem {

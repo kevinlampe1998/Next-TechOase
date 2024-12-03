@@ -20,17 +20,17 @@ const Contact = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Hier kannst du die Formulardaten verarbeiten, z.B. per API versenden
         console.log("Form data:", formData);
         alert("Vielen Dank für deine Nachricht!");
-        setFormData({ name: "", email: "", message: "" }); // Formular zurücksetzen
+        setFormData({ name: "", email: "", message: "" });
     };
 
     return (
         <div className={styles.contactContainer}>
+            <div className={styles.contactBG}></div>
             <h2>Kontaktiere uns</h2>
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
+            <form onSubmit={handleSubmit} className={styles.formGroup}>
+                {/* <div> */}
                     <label htmlFor="name">Name:</label>
                     <input
                         type="text"
@@ -40,8 +40,8 @@ const Contact = () => {
                         onChange={handleChange}
                         required
                     />
-                </div>
-                <div className="form-group">
+                {/* </div> */}
+                {/* <div className="form-group"> */}
                     <label htmlFor="email">E-Mail:</label>
                     <input
                         type="email"
@@ -51,8 +51,8 @@ const Contact = () => {
                         onChange={handleChange}
                         required
                     />
-                </div>
-                <div className="form-group">
+                {/* </div> */}
+                {/* <div className="form-group"> */}
                     <label htmlFor="message">Message:</label>
                     <textarea
                         id="message"
@@ -61,7 +61,7 @@ const Contact = () => {
                         onChange={handleChange}
                         required
                     />
-                </div>
+                {/* </div> */}
                 <button type="submit">Absenden</button>
             </form>
         </div>

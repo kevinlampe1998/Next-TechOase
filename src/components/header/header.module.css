@@ -58,7 +58,6 @@
     flex-wrap: wrap;
     padding-left: 10px;
     position: relative;
-    /* transform: translateY(-50px); */
 }
 
 .navLayout a {
@@ -94,6 +93,8 @@
     /* right: 80px; */
     /* min-width: 10px; */
     /* top: 10px; */
+    display: flex;
+    align-items: center;
 }
 
 .cartLogo p {
@@ -108,6 +109,24 @@
         transform: translateY(20px);
     }
 } */
+
+@media (max-width: 600px) {
+    .navLayout {
+        width: 100%;
+        justify-content: center;
+        gap: 4px;
+        padding-left: 0;
+        padding: 0 5px;
+    }
+    .navLayout > a:link,
+    .navLayout > a:active,
+    .navLayout > a:visited {
+        margin: 2px 0;
+    }
+    .navLayout a {
+        width: 32%;
+    }
+}
 
 @media (max-width: 1200px) {
     .header {

@@ -33,9 +33,10 @@ const Products = () => {
 
     return (
         <div className={styles.NewInStore}>
+            <div className={styles.newInStoreBG}></div>
             <h1>Products</h1>
 
-            {products &&
+            {products ?
                 products.map((product) => (
                     <div className={styles.NewInStoreProduct} key={product._id}>
                         <h2>{product.model}</h2>
@@ -54,7 +55,7 @@ const Products = () => {
                             Product Details
                         </button>
                     </div>
-                ))}
+                )) : <div className={styles.newInStoreLoading}>... loading</div>}
         </div>
     );
 };

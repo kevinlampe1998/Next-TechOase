@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, createContext, useContext, useEffect } from "react";
+import { useRef, useContext } from "react";
 import { TheContext } from "@/components/context-provider/component";
 import styles from "./page.module.css";
 import { useRouter } from "next/navigation";
@@ -9,7 +9,7 @@ const RegisterOrLogin = () => {
     const decideSection = useRef();
     const registerForm = useRef();
     const loginForm = useRef();
-    const { localDataBank, dispatch } = useContext(TheContext);
+    const { dispatch } = useContext(TheContext);
     const router = useRouter();
 
     const openRegister = () => {
@@ -25,70 +25,78 @@ const RegisterOrLogin = () => {
     const postRegister = async (e) => {
         e.preventDefault();
 
-        const firstName = e.target.children[2].value;
+        try {
+            const formData = {
+                firstName: e.target.firstName.value,
+                lastName: e.target.lastName.value,
+                email: e.target.email.value,
+                street: e.target.street.value,
+                postalCode: e.target.postalCode.value,
+                town: e.target.town.value,
+                birthDay: e.target.birthDay.value,
+                password: e.target.password.value,
+            };
 
-        const lastName = e.target.children[4].value;
+            const res = await fetch("/api/users/register", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData),
+            });
 
-        const email = e.target.children[6].value;
+            const data = await res.json();
 
-        const street = e.target.children[8].value;
+            if (!res.ok) {
+                throw new Error(data.message || "Registration failed");
+            }
 
-        const postalCode = e.target.children[10].value;
+            dispatch({ type: "users-login", payload: data.savedUser });
 
-        const town = e.target.children[12].value;
-
-        const birthDay = e.target.children[14].value;
-
-        const password = e.target.children[16].value;
-
-        const res = await fetch("/api/users/register", {
-            method: "POST",
-            body: JSON.stringify({
-                firstName,
-                lastName,
-                email,
-                street,
-                postalCode,
-                town,
-                birthDay,
-                password,
-            }),
-            headers: { "content-type": "application/json" },
-        });
-
-        const data = await res.json();
-        console.log("postRegister data", data);
-
-        dispatch({ type: "users-login", payload: data.savedUser });
-
-        data.success && router.push("/");
+            if (data.success) {
+                router.push("/");
+            }
+        } catch (error) {
+            console.error("Registration error:", error);
+            alert("Registration failed: " + error.message);
+        }
     };
 
     const postLogin = async (e) => {
         e.preventDefault();
 
-        const email = e.target.children[2].value;
-        const password = e.target.children[4].value;
+        try {
+            const formData = {
+                email: e.target.email.value,
+                password: e.target.password.value,
+            };
 
-        const res = await fetch("/api/users/login", {
-            method: "POST",
-            body: JSON.stringify({ email, password }),
-            headers: { "content-type": "application/json" },
-            credentials: "include",
-        });
+            const res = await fetch("/api/users/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                credentials: "include",
+                body: JSON.stringify(formData),
+            });
 
-        const data = await res.json();
-        console.log('postLogin data', data);
+            const data = await res.json();
 
-        if (data.isAdmin) {
-            dispatch({ type: "admin-login", payload: data.admin });
+            if (!res.ok) {
+                throw new Error(data.message || "Login failed");
+            }
 
-            router.push("/pages/admin");
-            return;
+            if (data.isAdmin) {
+                dispatch({ type: "admin-login", payload: data.admin });
+                router.push("/pages/admin");
+                return;
+            }
+
+            dispatch({ type: "users-login", payload: data.searchedUser });
+
+            if (data.success) {
+                router.push("/");
+            }
+        } catch (error) {
+            console.error("Login error:", error);
+            alert("Login failed: " + error.message);
         }
-        dispatch({ type: "users-login", payload: data.searchedUser });
-
-        data.success && router.push("/");
     };
 
     return (
@@ -102,51 +110,76 @@ const RegisterOrLogin = () => {
                 <button onClick={openLogin}>Login</button>
             </section>
 
-            <form
-                className={styles.register}
-                ref={registerForm}
-                onSubmit={postRegister}
-            >
-                <h2>Register</h2>
+                <form
+                    className={styles.register}
+                    ref={registerForm}
+                    onSubmit={postRegister}
+                >
+                    <h2>Register</h2>
 
-                <label htmlFor="firstName">First Name</label>
-                <input type="text" id="firstName" />
+                    <label htmlFor="firstName">First Name</label>
+                    <input
+                        type="text"
+                        id="firstName"
+                        name="firstName"
+                        required
+                    />
 
-                <label htmlFor="lastName">Last Name</label>
-                <input type="text" id="lastName" />
+                    <label htmlFor="lastName">Last Name</label>
+                    <input type="text" id="lastName" name="lastName" required />
 
-                <label htmlFor="email-register">Email</label>
-                <input type="email" id="email-register" />
+                    <label htmlFor="email">Email</label>
+                    <input type="email" id="email" name="email" required />
 
-                <label htmlFor="street">Street</label>
-                <input type="text" id="street" />
+                    <label htmlFor="street">Street</label>
+                    <input type="text" id="street" name="street" required />
 
-                <label htmlFor="postalCode">Postal Code</label>
-                <input type="number" id="postalCode" />
+                    <label htmlFor="postalCode">Postal Code</label>
+                    <input
+                        type="number"
+                        id="postalCode"
+                        name="postalCode"
+                        required
+                    />
 
-                <label htmlFor="town">Town</label>
-                <input type="text" id="town" />
+                    <label htmlFor="town">Town</label>
+                    <input type="text" id="town" name="town" required />
 
-                <label htmlFor="birthDay">Birthday</label>
-                <input type="date" id="birthDay" />
+                    <label htmlFor="birthDay">Birthday</label>
+                    <input type="date" id="birthDay" name="birthDay" required />
 
-                <label htmlFor="password-register">Password</label>
-                <input type="password" id="password-register" />
+                    <label htmlFor="password">Password</label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        required
+                    />
 
-                <button type="submit">Submit</button>
-            </form>
+                    <button type="submit">Register</button>
+                </form>
 
-            <form className={styles.login} ref={loginForm} onSubmit={postLogin}>
-                <h2>Login</h2>
+                <form
+                    className={styles.login}
+                    ref={loginForm}
+                    onSubmit={postLogin}
+                >
+                    <h2>Login</h2>
 
-                <label htmlFor="email-login">Email</label>
-                <input type="text" id="email-login" />
+                    <label htmlFor="email">Email</label>
+                    <input type="email" id="email" name="email" required />
 
-                <label htmlFor="password-login">Password</label>
-                <input type="password" id="password-login" />
+                    <label htmlFor="password">Password</label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        required
+                    />
 
-                <button type="submit">Submit</button>
-            </form>
+                    <button type="submit">Login</button>
+                </form>
+            </div>
         </div>
     );
 };

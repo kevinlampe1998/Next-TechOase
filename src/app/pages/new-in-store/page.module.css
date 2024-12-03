@@ -1,10 +1,7 @@
-.NewInStore img {
-    height: 400px;
-    min-width: 400px;
-    object-fit: cover;
-}
-
 .NewInStore {
+    width: 100%;
+    min-height: 100vh;
+    padding: 40px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -22,10 +19,19 @@
 }
 
 .NewInStore h1 {
-    padding-bottom: 20px;
+    text-align: center;
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 2rem;
 }
 
 .NewInStoreProduct {
+    width: 100%;
+    max-width: 800px;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     align-items: center;

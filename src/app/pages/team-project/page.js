@@ -1,18 +1,18 @@
-'use client';
+"use client";
 
-import styles from './page.module.css';
+import styles from "./page.module.css";
 
 const TeamProject = () => {
     const teamMembers = [
         {
             name: "Philipp",
             role: "Frontend Developer",
-            image: "/images/philipp.jpeg", // Lokaler Pfad im public-Ordner
+            image: "/images/philipp.jpeg",
         },
         {
             name: "Kevin",
             role: "Backend Developer",
-            image: "/images/kevin.png", // Lokaler Pfad im public-Ordner
+            image: "/images/kevin.png",
         },
     ];
 
@@ -22,16 +22,26 @@ const TeamProject = () => {
             <h2>The Super Team</h2>
             <ul>
                 {teamMembers.map((member, index) => (
-                    <li key={index} className={styles.teamMember}>
-                        <img
-                            src={member.image}
-                            alt={`${member.name}`}
-                            className={styles.teamMemberImage}
-                        />
-                        <div>
-                            <strong>{member.name}</strong> - {member.role}
+                    <div
+                        key={index}
+                        className={`${styles.member_container} ${
+                            index % 2 !== 0 ? styles.right : ""
+                        }`}
+                    >
+                        <div className={styles.image_container}>
+                            <img
+                                src={member.image}
+                                alt={`${member.name}`}
+                                className={styles.member_image}
+                            />
                         </div>
-                    </li>
+                        <div className={styles.member_info}>
+                            <h3 className={styles.member_name}>
+                                {member.name}
+                            </h3>
+                            <p className={styles.member_role}>{member.role}</p>
+                        </div>
+                    </div>
                 ))}
             </ul>
         </div>

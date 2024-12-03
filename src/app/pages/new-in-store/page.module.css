@@ -1,41 +1,103 @@
-.NewInStore img {
-    height: 400px;
-    min-width: 400px;
-    object-fit: cover;
-}
-
-.NewInStore {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 30px;
-    /* margin: 20px;
-    padding: 20px;
-    border: 1px solid #e0e0e0;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
-    background-image: url("/shop/new-products.jpeg");
+.registerOrLogin {
+    width: 100%;
+    min-height: 100vh;
+    background-image: url("/shop/faq.png");
     background-color: #cccccc;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-}
-
-
-.NewInStore h1 {
-    padding-bottom: 20px;
-}
-
-.NewInStoreProduct {
+    padding: 40px 20px;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 20px;
-    margin: 20px;
-    padding: 20px;
-    border: 1px solid #e0e0e0;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 90%;
-    max-width: 800px;
+    justify-content: center;
+}
+
+.content_box {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    max-width: 500px;
+}
+
+.decideRegisterOrLogin {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.decideRegisterOrLogin button {
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #4299e1;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.decideRegisterOrLogin button:hover {
+    background-color: #3182ce;
+}
+
+.register,
+.login {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+}
+
+.register h2,
+.login h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.register label,
+.login label {
+    font-weight: 500;
+    color: #4a5568;
+}
+
+.register input,
+.login input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.2s;
+}
+
+.register input:focus,
+.login input:focus {
+    outline: none;
+    border-color: #4299e1;
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
+}
+
+.register button,
+.login button {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #4299e1;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.register button:hover,
+.login button:hover {
+    background-color: #3182ce;
 }

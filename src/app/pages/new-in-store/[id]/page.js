@@ -48,9 +48,9 @@ const ProductDetails = ({ params }) => {
         
         cartMessage.current.innerHTML = data.message;
 
-        data.success && (cartMessage.current.style.color = 'green');
-        data.alreadyExist && (cartMessage.current.style.color = 'black');
-        data.error && (cartMessage.current.style.color = 'red');
+        data.success && cartMessage.current && (cartMessage.current.style.color = 'green');
+        data.alreadyExist && cartMessage.current && (cartMessage.current.style.color = 'black');
+        data.error && cartMessage.current && (cartMessage.current.style.color = 'red');
         
 
         dispatch({ type: 'renew-cart-logo' });
@@ -91,8 +91,8 @@ const ProductDetails = ({ params }) => {
     };
 
     useEffect(() => {
-        slidePicsValue && (slidePics.current.style.width = slidePicsValue);
-    }, [slidePicsValue]);
+        slidePicsValue && slidePics.current && (slidePics.current.style.width = slidePicsValue);
+    }, [slidePicsValue, slidePics.current]);
 
     useEffect(() => {
         id && fetchOtherPics();
@@ -128,14 +128,14 @@ const ProductDetails = ({ params }) => {
     return (
         <div className={styles.productDetail}>
                 {
-                    (otherPics && product) &&
+                    (otherPics && product && product.main_picture ) &&
 
                     <section className={styles.slideShow}>
                         <h2>
                             {product.manufacturer} - {product.model}
                         </h2>
                         <div>
-                            <div ref={slidePics} className={styles.slidePics}>
+                            <div ref={slidePics} className={styles.slidePics} style={{ width: slidePicsValue }}>
                                 <img src={product?.main_picture?.url}/>
                                 {otherPics.map(pic => (
                                     <img src={pic?.url} key={pic._id}/>

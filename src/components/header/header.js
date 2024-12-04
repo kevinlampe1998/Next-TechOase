@@ -31,7 +31,6 @@ const Header = () => {
         });
         const data = await res.json();
 
-        // console.log(data);
         dispatch({ type: 'set-cart', payload: data.cart.products });
     };
 
@@ -48,13 +47,10 @@ const Header = () => {
         const res = await fetch(`/api/new-in-store/${computerId}`);
         const data = await res.json();
 
-        console.log(data);
         return data;
     };
 
     useEffect(() => {
-        localDataBank.cart && console.log(localDataBank.cart);
-
         if (localDataBank.cart) {
     
             (async () => {
@@ -64,56 +60,30 @@ const Header = () => {
                         return computerObj;
                     })
                 )
-                console.log('fetchedComputers', fetchedComputers);
-                console.log('fetchedComputers[0]', fetchedComputers[0]);
-                console.log('fetchedComputers[1]', fetchedComputers[1]);
 
                 setComputers(fetchedComputers);
             })();
-    
-                
-            // setComputers(fetchedComputers);
         }
         
 
     }, [localDataBank.cart]);
 
     useEffect(() => {
-        console.log('computers', computers);
-
 
         if (computers) {
 
-            console.log('Array.isArray(computers)', Array.isArray(computers));
+            // computers.forEach((computer, index) => console.log(`computer ${index}`, computer));
 
-            for (let key in computers) {
-                console.log('key', key);
-                console.log('computers[key]', computers[key]);
-            }
-
-            computers.forEach((computer, index) => console.log(`computer ${index}`, computer));
-
-            console.log('computers.length', computers.length);
             setCartValues(prev => ({ ...prev, articleAmount: computers.length }));
 
             const total = computers.reduce((acc, computer) => {
                 const price = parseInt(computer.price);
                 return acc + price;
             }, 0)
-            console.log('total in useEffect', total);
 
             setCartValues(prev => ({ ...prev, totalPrice: total }));
         }
     }, [computers]);
-
-    useEffect(() => {
-        console.log('cartValues', cartValues)
-    });
-
-    useEffect(() => {
-        console.log('renewCartLogo', localDataBank.renewCartLogo);
-    });
-
 
     return (
         <header className={styles.header}>
@@ -152,7 +122,8 @@ const Header = () => {
                 </nav>
                 <nav className={styles.navLayout}>
                     <Link href="/pages/admin">Home</Link>
-                    <Link href="/pages/new-in-store">New in Store</Link>
+                    <Link href="/pages/admin/new-in-store-products">Admin Side New in Store</Link>
+                    <Link href="/pages//new-in-store">Client Side New in Store</Link>
                     <Link href="/pages/admin/set-product">Set in New in Store</Link>
                     
                 </nav>

@@ -64,6 +64,7 @@ const Cart = () => {
 
     return (
         <main key={'1234'} className={styles.cart}>
+            <div className={styles.cartBG}></div>
             <h1 key={'123'}>Cart</h1>
 
             {

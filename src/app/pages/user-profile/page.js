@@ -30,11 +30,30 @@ const Profile = () => {
 
     return (
         <section className={styles.profile}>
-                <button onClick={logout} href="#">Logout</button>
+                {/* <button onClick={logout} href="#">Logout</button>
                 <button onClick={() => router.push('/pages/set-used-item')}>Set product to sell</button>
                 <button onClick={navigateToSeeMyProducts}>See my Products</button>
                 <button>Settings</button>
-                <button>My Profile Data</button>
+                <button>My Profile Data</button> */}
+
+                {
+                    localDataBank.user ?
+
+                    <div className={styles.profile}>
+                        <button onClick={logout} href="#">Logout</button>
+                        <button onClick={() => router.push('/pages/set-used-item')}>Set product to sell</button>
+                        <button onClick={navigateToSeeMyProducts}>See my Products</button>
+                        <button>Settings</button>
+                        <button>My Profile Data</button>
+                    </div>
+
+                    : localDataBank.admin ?
+                    <div className={styles.profile}>
+                        <button onClick={logout} href="#">Logout</button>
+                    </div>
+
+                    : <div>... loading</div>
+                }
                 {/* <ThreeDExample/> */}
         </section>
     );

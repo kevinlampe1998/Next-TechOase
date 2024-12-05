@@ -4,6 +4,7 @@
     align-items: center;
     gap: 10px;
     color: var(--tertiary-color);
+    min-height: 800px;
 }
 
 .seeMyProducts h2 {

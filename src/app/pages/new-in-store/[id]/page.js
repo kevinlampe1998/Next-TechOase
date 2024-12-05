@@ -120,15 +120,15 @@ const ProductDetails = ({ params }) => {
             slideShow === '0%' && (slideLeftButton.current.style.display = 'none');
             slideShow !== '0%' && (slideLeftButton.current.style.display = 'block');
     
-            slideShow === `-${otherPics.length - 1}00%` && (slideRightButton.current.style.display = 'none');
-            slideShow !== `-${otherPics.length - 1}00%` && (slideRightButton.current.style.display = 'block');
+            slideShow === `-${otherPics.length}00%` && (slideRightButton.current.style.display = 'none');
+            slideShow !== `-${otherPics.length}00%` && (slideRightButton.current.style.display = 'block');
         }
-    }, [slideShow]);
+    }, [slideShow, slideLeftButton.current, slideRightButton.current]);
 
     return (
         <div className={styles.productDetail}>
                 {
-                    (otherPics && product && product.main_picture ) &&
+                    (otherPics && product && product.main_picture && product.main_picture.url ) &&
 
                     <section className={styles.slideShow}>
                         <h2>

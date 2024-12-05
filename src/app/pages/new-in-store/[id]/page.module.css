@@ -115,8 +115,8 @@
 
 .slideShow img {
     width: 50%;
-    height: 600px;
-    object-fit: cover;
+    object-fit: contain;
+    height: auto;
 }
 
 .slideShow > div {
@@ -143,6 +143,7 @@
 
 .slideLeftButton {
     left: 30px;
+    display: none;
 }
 
 .slideRightButton {

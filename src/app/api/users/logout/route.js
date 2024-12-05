@@ -5,7 +5,7 @@ export async function DELETE() {
     try {
         const cookie = serialize('token', '', {
             httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
+            secure: true,
             maxAge: -1,
             path: '/',
             sameSite: 'Strict',

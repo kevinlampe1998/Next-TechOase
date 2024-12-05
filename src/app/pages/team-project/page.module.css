@@ -6,6 +6,15 @@
     text-align: center;
 }
 
+.teamProject img {
+    height: 250px;
+    border-radius: 20px;
+}
+
+.teamProject > ul > div {
+    padding-bottom: 50px;
+}
+
 .teamProject h2 {
     text-align: center;
     padding-bottom: 50px;
@@ -40,8 +49,8 @@
 }
 
 .teamMemberImage {
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     margin-right: 20px;
     object-fit: cover;

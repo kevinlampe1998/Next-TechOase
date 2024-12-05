@@ -120,8 +120,8 @@ const ProductDetails = ({ params }) => {
             slideShow === '0%' && (slideLeftButton.current.style.display = 'none');
             slideShow !== '0%' && (slideLeftButton.current.style.display = 'block');
     
-            slideShow === `-${otherPics.length - 1}00%` && (slideRightButton.current.style.display = 'none');
-            slideShow !== `-${otherPics.length - 1}00%` && (slideRightButton.current.style.display = 'block');
+            slideShow === `-${otherPics.length}00%` && (slideRightButton.current.style.display = 'none');
+            slideShow !== `-${otherPics.length}00%` && (slideRightButton.current.style.display = 'block');
         }
     }, [slideShow]);
 

@@ -115,7 +115,7 @@
 
 .slideShow img {
     width: 50%;
-    height: 600px;
+    /* height: 450px; */
     object-fit: cover;
 }
 
@@ -123,7 +123,8 @@
     position: relative;
 }
 
-.slideLeftButton, .slideRightButton {
+.slideLeftButton,
+.slideRightButton {
     background: var(--primary-color);
     color: #fff;
     opacity: 0.7;
@@ -137,7 +138,8 @@
     margin: 20px;
 }
 
-.slideLeftButton:hover, .slideRightButton:hover {
+.slideLeftButton:hover,
+.slideRightButton:hover {
     opacity: 0.9;
 }
 

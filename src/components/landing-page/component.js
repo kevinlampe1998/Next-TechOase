@@ -70,7 +70,7 @@ const LandingPage = () => {
                     className={`${styles.split} ${styles.right}`}
                 >
                     <h1>
-                        Used Items
+                        User Deals
                         <br />
                         Your Market Place
                     </h1>
